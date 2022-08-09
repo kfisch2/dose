@@ -1,8 +1,8 @@
 // import sequelize constructor from library
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
 
 // access environmental variables
-require("dotenv").config();
+require('dotenv').config();
 
 // create connection to our db
 let sequelize;
@@ -14,8 +14,8 @@ if (process.env.JAWSDB_URL) {
     process.env.DB_USER,
     process.env.DB_PW,
     {
-      host: "localhost",
-      dialect: "mysql",
+      host: 'localhost',
+      dialect: 'mysql',
       port: 3306,
     }
   );

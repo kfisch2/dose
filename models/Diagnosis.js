@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 class Diagnosis extends Model {}
 
@@ -19,8 +19,8 @@ Diagnosis.init(
     patient_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "patient",
-        key: "id",
+        model: 'patient',
+        key: 'id',
       },
     },
   },
@@ -28,7 +28,7 @@ Diagnosis.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "diagnosis",
+    modelName: 'diagnosis',
   }
 );
 module.exports = Diagnosis;
