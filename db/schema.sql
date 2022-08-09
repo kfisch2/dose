@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS dose_db;
+CREATE DATABASE dose_db;
+
+USE dose_db;
