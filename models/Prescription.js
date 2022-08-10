@@ -27,6 +27,13 @@ Prescription.init(
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    diagnosis_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'diagnosis',
+        key: 'id',
+      },
+    },
   },
   {
     sequelize,

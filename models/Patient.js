@@ -17,7 +17,7 @@ Patient.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    patient_name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -34,7 +34,7 @@ Patient.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [4],
+        len: [8],
       },
     },
   },
