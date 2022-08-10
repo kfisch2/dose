@@ -22,7 +22,7 @@ Diagnosis.init(
         model: 'patient',
         key: 'id',
       },
-    },
+    }
   },
   {
     sequelize,
