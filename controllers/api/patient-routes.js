@@ -2,77 +2,80 @@ const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
 //add withAuth to loggout route
 
-const { Patient, Prescription, Diagnosis, Appointment } = require('../../models');
+const {
+    Patient,
+    Prescription,
+    Diagnosis,
+    Appointment,
+} = require('../../models');
 
 // GET all Patients
 router.get('/', (req, res) => {
-  Patient.findAll({
-    //add back when login is created
-    //   attributes: {
-    //     exclude: ['password']
-    //   }
+    Patient.findAll({
+        //add back when login is created
+        //   attributes: {
+        //     exclude: ['password']
+        //   }
     })
-    .then(dbPatiendData => res.json(dbPatiendData))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+        .then((dbPatiendData) => res.json(dbPatiendData))
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 // GET one Patient
 router.get('/:id', (req, res) => {
-  Patient.findOne({
-    //add when login is created
-    //   attributes: {
-    //     exclude: ['password']
-    //   },
-      where: {
-        id: req.params.id
-      },
-    //   include: [
-    //     {
-    //       model: Prescription
-    //     },
-    //     {
-    //       model: Appointment
-    //     },
-    //     {
-    //       model: Diagnosis
-    //     }
-    //   ]
+    Patient.findOne({
+        //add when login is created
+        //   attributes: {
+        //     exclude: ['password']
+        //   },
+        where: {
+            id: req.params.id,
+        },
+        //   include: [
+        //     {
+        //       model: Prescription
+        //     },
+        //     {
+        //       model: Appointment
+        //     },
+        //     {
+        //       model: Diagnosis
+        //     }
+        //   ]
     })
-    .then(dbPatiendData => {
-      if (!dbPatiendData) {
-        res.status(404).json({
-          message: 'No patient found with this id'
+        .then((dbPatiendData) => {
+            if (!dbPatiendData) {
+                res.status(404).json({
+                    message: 'No patient found with this id',
+                });
+                return;
+            }
+            res.json(dbPatiendData);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
         });
-        return;
-      }
-      res.json(dbPatiendData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
 });
 
 // CREATE Patient
 router.post('/', (req, res) => {
-  // expects {name: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
-  Patient.create({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password
-    })
-    .then(dbPatiendData => {
-   
-    //   req.session.save(() => {
-    //     req.session.patient_id = dbPatiendData.id;
-    //     req.session.name = dbPatiendData.name;
-    //     req.session.loggedIn = true;
+    // expects {name: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
+    Patient.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+    }).then((dbPatiendData) => {
+        //   req.session.save(() => {
+        //     req.session.patient_id = dbPatiendData.id;
+        //     req.session.name = dbPatiendData.name;
+        //     req.session.loggedIn = true;
 
         res.json(dbPatiendData);
-      });
+    });
     // })
 });
 
@@ -108,7 +111,6 @@ router.post('/', (req, res) => {
 //     });
 //   });
 // });
-
 
 //logout of session
 // router.post('/logout', withAuth, (req, res) => {
