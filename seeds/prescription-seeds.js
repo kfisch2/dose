@@ -6,6 +6,8 @@ const prescriptionData = [
         refill_date: '01/02/2023',
         date_prescribed: '12/08/2022',
         cost: 50,
+        patient_id: 1,
+        diagnosis_id: 1,
     },
 
     {
@@ -13,6 +15,8 @@ const prescriptionData = [
         refill_date: '01/02/2023',
         date_prescribed: '12/08/2022',
         cost: 250,
+        patient_id: 2,
+        diagnosis_id: 2,
     },
 
     {
@@ -20,6 +24,8 @@ const prescriptionData = [
         refill_date: '01/02/2023',
         date_prescribed: '12/08/2022',
         cost: 150,
+        patient_id: 3,
+        diagnosis_id: 3,
     },
 ];
 
