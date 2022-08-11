@@ -2,16 +2,11 @@ const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
 //add withAuth to loggout route
 
-const {
-    Patient,
-    Prescription,
-    Diagnosis
-} = require('../../models');
+const { Patient, Prescription, Diagnosis } = require('../../models');
 
 // GET all Diagnosis
 router.get('/', (req, res) => {
-    Diagnosis.findAll({
-    })
+    Diagnosis.findAll({})
         .then((dbDiagnosisData) => res.json(dbDiagnosisData))
         .catch((err) => {
             console.log(err);
@@ -25,12 +20,16 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id,
         },
-          include: [
+        include: [
             {
-              model: Patient,
-              attributes: ['id']
+                model: Patient,
+                attributes: ['id'],
             },
-          ]
+            {
+                model: Prescription,
+                attributes: ['id'],
+            },
+        ],
     })
         .then((dbDiagnosisData) => {
             if (!dbDiagnosisData) {
@@ -52,9 +51,8 @@ router.post('/', (req, res) => {
     // expects {name: 'ADHD', Patient_id: '1'}
     Diagnosis.create({
         name: req.body.name,
-        patient_id: req.body.patient_id
+        patient_id: req.body.patient_id,
         //will be req.session.patiend_id
-      
     }).then((dbDiagnosisData) => {
         res.json(dbDiagnosisData);
     });
@@ -65,20 +63,22 @@ router.delete('/:id', (req, res) => {
     console.log('id', req.params.id);
     Diagnosis.destroy({
         where: {
-          id: req.params.id
-        }
-      })
-        .then(dbDiagnosisData => {
-          if (!dbDiagnosisData) {
-            res.status(404).json({ message: 'No diagnosis found with this id' });
-            return;
-          }
-          res.json(dbDiagnosisData);
+            id: req.params.id,
+        },
+    })
+        .then((dbDiagnosisData) => {
+            if (!dbDiagnosisData) {
+                res.status(404).json({
+                    message: 'No diagnosis found with this id',
+                });
+                return;
+            }
+            res.json(dbDiagnosisData);
         })
-        .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
         });
-  });
+});
 
 module.exports = router;

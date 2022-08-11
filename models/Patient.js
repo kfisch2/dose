@@ -38,28 +38,28 @@ Patient.init(
             },
         },
     },
-  {
-    // hooks: {
-    //   async beforeCreate(newPatientData) {
-    //     newPatientData.password = await bcrypt.hash(
-    //       newPatientData.password,
-    //       10
-    //     );
-    //     return newPatientData;
-    //   },
-    //   async beforeUpdate(updatedPatientData) {
-    //     updatedPatientData.password = await bcrypt.hash(
-    //       updatedPatientData.password,
-    //       10
-    //     );
-    //     return updatedPatientData;
-    //   },
-    // },
-    sequelize,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'patient',
-  }
+    {
+        // hooks: {
+        //   async beforeCreate(newPatientData) {
+        //     newPatientData.password = await bcrypt.hash(
+        //       newPatientData.password,
+        //       10
+        //     );
+        //     return newPatientData;
+        //   },
+        //   async beforeUpdate(updatedPatientData) {
+        //     updatedPatientData.password = await bcrypt.hash(
+        //       updatedPatientData.password,
+        //       10
+        //     );
+        //     return updatedPatientData;
+        //   },
+        // },
+        sequelize,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'patient',
+    }
 );
 
 module.exports = Patient;
