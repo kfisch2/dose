@@ -8,42 +8,38 @@ const {
     Diagnosis
 } = require('../../models');
 
-// GET all Prescription
+// GET all Diagnosis
 router.get('/', (req, res) => {
-    Prescription.findAll({
+    Diagnosis.findAll({
     })
-        .then((dbPrescriptionData) => res.json(dbPrescriptionData))
+        .then((dbDiagnosisData) => res.json(dbDiagnosisData))
         .catch((err) => {
             console.log(err);
             res.status(500).json(err);
         });
 });
 
-// GET one Prescription
+// GET one Diagnosis
 router.get('/:id', (req, res) => {
-    Prescription.findOne({
+    Diagnosis.findOne({
         where: {
             id: req.params.id,
         },
           include: [
             {
-                model: Diagnosis
-            },
-            {
               model: Patient,
               attributes: ['id']
             },
-
           ]
     })
-        .then((dbPrescriptionData) => {
-            if (!dbPrescriptionData) {
+        .then((dbDiagnosisData) => {
+            if (!dbDiagnosisData) {
                 res.status(404).json({
-                    message: 'No Prescription found with this id',
+                    message: 'No Diagnosis found with this id',
                 });
                 return;
             }
-            res.json(dbPrescriptionData);
+            res.json(dbDiagnosisData);
         })
         .catch((err) => {
             console.log(err);
@@ -51,37 +47,33 @@ router.get('/:id', (req, res) => {
         });
 });
 
-// CREATE Prescription
+// CREATE Diagnosis
 router.post('/', (req, res) => {
     // expects {name: 'ADHD', Patient_id: '1'}
-    Prescription.create({
-        rx: req.body.rx,
-        refill_date: req.body.refill_date,
-        date_prescribed: req.body.date_prescribed,
-        cost: req.body.cost,
-        patient_id: req.body.patient_id,
-        diagnosis_id: req.body.diagnosis_id
+    Diagnosis.create({
+        name: req.body.name,
+        patient_id: req.body.patient_id
         //will be req.session.patiend_id
       
-    }).then((dbPrescriptionData) => {
-        res.json(dbPrescriptionData);
+    }).then((dbDiagnosisData) => {
+        res.json(dbDiagnosisData);
     });
 });
 
-//Delete Prescription
+//Delete Diagnosis
 router.delete('/:id', (req, res) => {
     console.log('id', req.params.id);
-    Prescription.destroy({
+    Diagnosis.destroy({
         where: {
           id: req.params.id
         }
       })
-        .then(dbPrescriptionData => {
-          if (!dbPrescriptionData) {
-            res.status(404).json({ message: 'No Prescription found with this id' });
+        .then(dbDiagnosisData => {
+          if (!dbDiagnosisData) {
+            res.status(404).json({ message: 'No diagnosis found with this id' });
             return;
           }
-          res.json(dbPrescriptionData);
+          res.json(dbDiagnosisData);
         })
         .catch(err => {
           console.log(err);
