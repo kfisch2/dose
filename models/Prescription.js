@@ -11,17 +11,23 @@ Prescription.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    medication: {
+    rx: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     refill_date: {
       type: DataTypes.DATEONLY,
       allowNull: true,
+      validate: {
+        isDate: true
+      }
     },
     date_prescribed: {
       type: DataTypes.DATEONLY,
       allowNull: false,
+      validate: {
+        isDate: true
+      }
     },
     cost: {
       type: DataTypes.INTEGER,
