@@ -12,7 +12,7 @@ Diagnosis.init(
             allowNull: false,
             primaryKey: true,
         },
-        name: {
+        diagnosis_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },

@@ -3,11 +3,15 @@ const sequelize = require('../config/connection');
 
 const bcrypt = require('bcrypt');
 
+// create User model
 class Patient extends Model {
-    // check password password
+    // set up method to run on instance data (per user) to check password
+    // checkPassword(loginPW) {
+    //   return bcrypt.compareSync(loginPW, this.password);
+    // }
 }
 
-// table columns
+// define table columns and configuration
 Patient.init(
     {
         // id column
@@ -17,7 +21,7 @@ Patient.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -29,7 +33,6 @@ Patient.init(
                 isEmail: true,
             },
         },
-        // password column
         password: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -40,24 +43,30 @@ Patient.init(
     },
     {
         // hooks: {
-        //   async beforeCreate(newPatientData) {
-        //     newPatientData.password = await bcrypt.hash(
-        //       newPatientData.password,
-        //       10
-        //     );
-        //     return newPatientData;
-        //   },
-        //   async beforeUpdate(updatedPatientData) {
-        //     updatedPatientData.password = await bcrypt.hash(
-        //       updatedPatientData.password,
-        //       10
-        //     );
-        //     return updatedPatientData;
-        //   },
+        //     async beforeCreate(newPatientData) {
+        //         newPatientData.password = await bcrypt.hash(
+        //             newPatientData.password,
+        //             10
+        //         );
+        //         return newPatientData;
+        //     },
+        //     async beforeUpdate(updatedPatientData) {
+        //         updatedPatientData.password = await bcrypt.hash(
+        //             updatedPatientData.password,
+        //             10
+        //         );
+        //         return updatedPatientData;
+        //     },
         // },
+
         sequelize,
+
+        timestamps: false,
+
         freezeTableName: true,
+
         underscored: true,
+
         modelName: 'patient',
     }
 );
