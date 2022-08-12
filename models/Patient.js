@@ -6,9 +6,9 @@ const bcrypt = require('bcrypt');
 // create User model
 class Patient extends Model {
     // set up method to run on instance data (per user) to check password
-    // checkPassword(loginPW) {
-    //   return bcrypt.compareSync(loginPW, this.password);
-    // }
+    checkPassword(loginPW) {
+        return bcrypt.compareSync(loginPW, this.password);
+    }
 }
 
 // define table columns and configuration
@@ -42,22 +42,22 @@ Patient.init(
         },
     },
     {
-        // hooks: {
-        //     async beforeCreate(newPatientData) {
-        //         newPatientData.password = await bcrypt.hash(
-        //             newPatientData.password,
-        //             10
-        //         );
-        //         return newPatientData;
-        //     },
-        //     async beforeUpdate(updatedPatientData) {
-        //         updatedPatientData.password = await bcrypt.hash(
-        //             updatedPatientData.password,
-        //             10
-        //         );
-        //         return updatedPatientData;
-        //     },
-        // },
+        hooks: {
+            async beforeCreate(newPatientData) {
+                newPatientData.password = await bcrypt.hash(
+                    newPatientData.password,
+                    10
+                );
+                return newPatientData;
+            },
+            async beforeUpdate(updatedPatientData) {
+                updatedPatientData.password = await bcrypt.hash(
+                    updatedPatientData.password,
+                    10
+                );
+                return updatedPatientData;
+            },
+        },
 
         sequelize,
 
