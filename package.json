@@ -28,7 +28,9 @@
     "express-session": "^1.17.3",
     "handlebars": "^4.7.7",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.21.3"
+    "node-cron": "^3.0.1",
+    "sequelize": "^6.21.3",
+    "twilio": "^3.80.1"
   },
   "devDependencies": {
     "prettier": "^2.7.1"
