@@ -43,13 +43,13 @@ Patient.init(
         },
         phone_number: {
             type: DataTypes.STRING,
+            allowNull: false,
             validate: {
                 len: [10],
             },
         },
     },
     {
-
         hooks: {
             async beforeCreate(newPatientData) {
                 newPatientData.password = await bcrypt.hash(
