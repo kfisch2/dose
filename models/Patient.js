@@ -24,6 +24,7 @@ Patient.init(
         username: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
         },
         email: {
             type: DataTypes.STRING,
@@ -40,9 +41,15 @@ Patient.init(
                 len: [8],
             },
         },
+        phone_number: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [10],
+            },
+        },
     },
     {
-
         hooks: {
             async beforeCreate(newPatientData) {
                 newPatientData.password = await bcrypt.hash(

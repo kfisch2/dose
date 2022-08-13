@@ -60,6 +60,7 @@ router.post('/', (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
+        phone_number: req.body.phone_number,
     }).then((dbPatientData) => {
         req.session.save(() => {
             req.session.patient_id = dbPatientData.id;
@@ -69,34 +70,6 @@ router.post('/', (req, res) => {
             res.json(dbPatientData);
         });
     });
-});
-
-//Update a Patient's phonenumber
-router.put('/:id', (req, res) => {
-    // expects {phone_number: 1233214444}
-    Patient.update(
-        {
-            phone_number: req.body.phone_number,
-        },
-        {
-            where: {
-                id: req.params.id,
-            },
-        }
-    )
-        .then((dbPatientData) => {
-            if (!dbPatientData[0]) {
-                res.status(404).json({
-                    message: 'No patient found with this id',
-                });
-                return;
-            }
-            res.json(dbPatientData);
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
 });
 
 // //CREATE LOGIN
