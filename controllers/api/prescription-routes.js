@@ -1,6 +1,6 @@
 const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
-//add withAuth to loggout route
+//add withAuth to loggout route - and update 
 
 const { Patient, Prescription, Diagnosis } = require('../../models');
 
@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
 
 // CREATE Prescription
 router.post('/', (req, res) => {
-    // expects {name: 'ADHD', Patient_id: '1'}
+    // expects {rx: "test", refill_date: "11/04/2022", date_prescribed: "09/09/2022", cost: 20, patient_id : 2, diagnosis_id : 3}
     Prescription.create({
         rx: req.body.rx,
         refill_date: req.body.refill_date,
@@ -60,6 +60,32 @@ router.post('/', (req, res) => {
         res.json(dbPrescriptionData);
     });
 });
+
+//Update a perscription's title
+router.put('/:id', (req, res) => {
+    // expects {refill_date: "11/04/2022", cost: 20}
+    Prescription.update( 
+    {
+        refill_date: req.body.refill_date,
+        cost: req.body.cost
+    },
+    {  
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbPrescriptionData => {
+        if (!dbPrescriptionData[0]) {
+          res.status(404).json({ message: 'No post found with this id' });
+          return;
+        }
+        res.json(dbPrescriptionData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
 //Delete Prescription
 router.delete('/:id', (req, res) => {

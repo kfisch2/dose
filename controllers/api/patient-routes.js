@@ -6,7 +6,6 @@ const {
     Patient,
     Prescription,
     Diagnosis,
-    Appointment,
 } = require('../../models');
 
 // GET all Patients
@@ -17,7 +16,7 @@ router.get('/', (req, res) => {
             exclude: ['password'],
         },
     })
-        .then((dbPatiendData) => res.json(dbPatiendData))
+        .then((dbPatientData) => res.json(dbPatientData))
         .catch((err) => {
             console.log(err);
             res.status(500).json(err);
@@ -39,21 +38,18 @@ router.get('/:id', (req, res) => {
                 model: Prescription,
             },
             {
-                model: Appointment,
-            },
-            {
                 model: Diagnosis,
             },
         ],
     })
-        .then((dbPatiendData) => {
-            if (!dbPatiendData) {
+        .then((dbPatientData) => {
+            if (!dbPatientData) {
                 res.status(404).json({
                     message: 'No patient found with this id',
                 });
                 return;
             }
-            res.json(dbPatiendData);
+            res.json(dbPatientData);
         })
         .catch((err) => {
             console.log(err);
@@ -68,16 +64,17 @@ router.post('/', (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
-    }).then((dbPatiendData) => {
+    }).then((dbPatientData) => {
         req.session.save(() => {
-            req.session.patient_id = dbPatiendData.id;
-            req.session.username = dbPatiendData.username;
+            req.session.patient_id = dbPatientData.id;
+            req.session.username = dbPatientData.username;
             req.session.loggedIn = true;
 
-            res.json(dbPatiendData);
+            res.json(dbPatientData);
         });
     });
 });
+
 
 // //CREATE LOGIN
 //This should be good to go - just double check that declared session varables will work
@@ -88,15 +85,15 @@ router.post('/login', (req, res) => {
         where: {
             email: req.body.email,
         },
-    }).then((dbPatiendData) => {
-        if (!dbPatiendData) {
+    }).then((dbPatientData) => {
+        if (!dbPatientData) {
             res.status(400).json({
                 message: 'No patient with that email address!',
             });
             return;
         }
 
-        const validPassword = dbPatiendData.checkPassword(req.body.password);
+        const validPassword = dbPatientData.checkPassword(req.body.password);
 
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect password!' });
@@ -105,12 +102,12 @@ router.post('/login', (req, res) => {
 
         req.session.save(() => {
             // declare session variables
-            req.session.patient_id = dbPatiendData.id;
-            req.session.username = dbPatiendData.username;
+            req.session.patient_id = dbPatientData.id;
+            req.session.username = dbPatientData.username;
             req.session.loggedIn = true;
 
             res.json({
-                user: dbPatiendData,
+                user: dbPatientData,
                 message: 'You are now logged in!',
             });
         });
