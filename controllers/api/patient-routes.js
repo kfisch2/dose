@@ -72,6 +72,34 @@ router.post('/', (req, res) => {
     });
 });
 
+//Update a Patient's phonenumber
+router.put('/:id', (req, res) => {
+    // expects {phone_number: 1233214444}
+    Patient.update(
+        {
+            phone_number: req.body.phone_number,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
+        }
+    )
+        .then((dbPatientData) => {
+            if (!dbPatientData[0]) {
+                res.status(404).json({
+                    message: 'No patient found with this id',
+                });
+                return;
+            }
+            res.json(dbPatientData);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
 // //CREATE LOGIN
 //This should be good to go - just double check that declared session varables will work
 
