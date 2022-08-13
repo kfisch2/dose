@@ -73,7 +73,7 @@ router.post('/', (req, res) => {
 
 //Update a Patient's phonenumber
 router.put('/:id', (req, res) => {
-    // expects {phone_number: 333-333-3333}
+    // expects {phone_number: 1233214444}
     Patient.update(
         {
             phone_number: req.body.phone_number,
