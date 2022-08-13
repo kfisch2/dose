@@ -50,7 +50,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     // expects {name: 'ADHD', Patient_id: '1'}
     Diagnosis.create({
-        name: req.body.name,
+        diagnosis_name: req.body.diagnosis_name,
         patient_id: req.body.patient_id,
         //will be req.session.patiend_id
     }).then((dbDiagnosisData) => {

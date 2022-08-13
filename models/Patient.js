@@ -3,6 +3,9 @@ const sequelize = require('../config/connection');
 
 const bcrypt = require('bcrypt');
 
+//validates if phone number is a string of 10 numbers.
+const phoneValidationRegex = /[0-9]{10}/;
+
 // create User model
 class Patient extends Model {
     // set up method to run on instance data (per user) to check password
@@ -24,6 +27,7 @@ Patient.init(
         username: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
         },
         email: {
             type: DataTypes.STRING,
@@ -38,6 +42,13 @@ Patient.init(
             allowNull: false,
             validate: {
                 len: [8],
+            },
+        },
+        phone_number: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                is: phoneValidationRegex,
             },
         },
     },
