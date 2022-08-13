@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Patient, Prescription, Diagnosis } = require('../models');
+require('dotenv').config();
 
 router.get('/', (req, res) => {
     res.render('layouts/main');
