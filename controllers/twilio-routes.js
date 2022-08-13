@@ -12,8 +12,8 @@ function sendTextNotification() {
     client.messages
         .create({
             body: 'Your prescription needs to be refilled in 3 days',
-            to: '+15097712596',
-            from: '+14055044157',
+            to: `+1${process.env.PHONE_RECEIVER}`,
+            from: process.env.PHONE_SENDER,
         })
         .then((message) => console.log(message))
         .catch((err) => console.log(err));
