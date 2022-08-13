@@ -42,6 +42,7 @@ Patient.init(
         },
     },
     {
+
         hooks: {
             async beforeCreate(newPatientData) {
                 newPatientData.password = await bcrypt.hash(
