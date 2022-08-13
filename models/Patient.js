@@ -24,6 +24,7 @@ Patient.init(
         username: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
         },
         email: {
             type: DataTypes.STRING,
@@ -38,6 +39,12 @@ Patient.init(
             allowNull: false,
             validate: {
                 len: [8],
+            },
+        },
+        phone_number: {
+            type: DataTypes.STRING,
+            validate: {
+                len: [10],
             },
         },
     },
