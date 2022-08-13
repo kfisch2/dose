@@ -16,6 +16,12 @@
                 <a href="#">Appointments</a>
                 <a href="#">Prescriptions</a>
                 <a href="#">Contact Us</a>
+                {{#if loggedIn}}
+                <a href="/homepage">homepage</a>
+                <button id="logout">logout</button>
+                {{else}}
+                <a href="/login" class="loginBtn">Sign In</a>
+                {{/if}}
             </div>
         </header>
     <div class="content">
