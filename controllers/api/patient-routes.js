@@ -7,7 +7,6 @@ const { Patient, Prescription, Diagnosis } = require('../../models');
 // GET all Patients
 router.get('/', (req, res) => {
     Patient.findAll({
-        //add back when login is created
         attributes: {
             exclude: ['password'],
         },
@@ -22,7 +21,6 @@ router.get('/', (req, res) => {
 // GET one Patient
 router.get('/:id', (req, res) => {
     Patient.findOne({
-        // add when login is created
         attributes: {
             exclude: ['password'],
         },
@@ -55,7 +53,7 @@ router.get('/:id', (req, res) => {
 
 // CREATE Patient
 router.post('/', (req, res) => {
-    // expects {username: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
+    // expects {username: 'robin', email: 'robin-o@gmail.com', password: 'robin1234', phone_number: '2223334444'}
     Patient.create({
         username: req.body.username,
         email: req.body.email,
@@ -74,7 +72,7 @@ router.post('/', (req, res) => {
 
 //Update a Patient's phonenumber
 router.put('/:id', (req, res) => {
-    // expects {phone_number: 1233214444}
+    // expects {phone_number: 2223334444}
     Patient.update(
         {
             phone_number: req.body.phone_number,
