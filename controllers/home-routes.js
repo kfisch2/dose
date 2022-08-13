@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const { Patient, Prescription, Diagnosis } = require('../models');
 
 router.get('/', (req, res) => {
-    res.render('homepage');
+    res.render('layouts/main');
 });
 
 router.get('/login', (req, res) => {
