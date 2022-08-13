@@ -1,23 +1,18 @@
 const router = require('express').Router();
-// const withAuth = require('../../utils/auth');
+const withAuth = require('../../utils/withAuth');
 //add withAuth to loggout route
 
-const {
-    Patient,
-    Prescription,
-    Diagnosis,
-    Appointment,
-} = require('../../models');
+const { Patient, Prescription, Diagnosis } = require('../../models');
 
 // GET all Patients
 router.get('/', (req, res) => {
     Patient.findAll({
         //add back when login is created
-        //   attributes: {
-        //     exclude: ['password']
-        //   }
+        attributes: {
+            exclude: ['password'],
+        },
     })
-        .then((dbPatiendData) => res.json(dbPatiendData))
+        .then((dbPatientData) => res.json(dbPatientData))
         .catch((err) => {
             console.log(err);
             res.status(500).json(err);
@@ -27,33 +22,30 @@ router.get('/', (req, res) => {
 // GET one Patient
 router.get('/:id', (req, res) => {
     Patient.findOne({
-        //add when login is created
-        //   attributes: {
-        //     exclude: ['password']
-        //   },
+        // add when login is created
+        attributes: {
+            exclude: ['password'],
+        },
         where: {
             id: req.params.id,
         },
-        //   include: [
-        //     {
-        //       model: Prescription
-        //     },
-        //     {
-        //       model: Appointment
-        //     },
-        //     {
-        //       model: Diagnosis
-        //     }
-        //   ]
+        include: [
+            {
+                model: Prescription,
+            },
+            {
+                model: Diagnosis,
+            },
+        ],
     })
-        .then((dbPatiendData) => {
-            if (!dbPatiendData) {
+        .then((dbPatientData) => {
+            if (!dbPatientData) {
                 res.status(404).json({
                     message: 'No patient found with this id',
                 });
                 return;
             }
-            res.json(dbPatiendData);
+            res.json(dbPatientData);
         })
         .catch((err) => {
             console.log(err);
@@ -63,64 +55,70 @@ router.get('/:id', (req, res) => {
 
 // CREATE Patient
 router.post('/', (req, res) => {
-    // expects {name: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
+    // expects {username: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
     Patient.create({
-        name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password,
-    }).then((dbPatiendData) => {
-        //   req.session.save(() => {
-        //     req.session.patient_id = dbPatiendData.id;
-        //     req.session.name = dbPatiendData.name;
-        //     req.session.loggedIn = true;
+        phone_number: req.body.phone_number,
+    }).then((dbPatientData) => {
+        req.session.save(() => {
+            req.session.patient_id = dbPatientData.id;
+            req.session.username = dbPatientData.username;
+            req.session.loggedIn = true;
 
-        res.json(dbPatiendData);
+            res.json(dbPatientData);
+        });
     });
-    // })
 });
 
 // //CREATE LOGIN
 //This should be good to go - just double check that declared session varables will work
 
-// router.post('/login', (req, res) => {
-// // expects {name: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
-//   Patient.findOne({
-//     where: {
-//       email: req.body.email
-//     }
-//   }).then(dbPatiendData => {
-//     if (!dbPatiendData) {
-//       res.status(400).json({ message: 'No patient with that email address!' });
-//       return;
-//     }
+router.post('/login', (req, res) => {
+    // expects {username: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
+    Patient.findOne({
+        where: {
+            email: req.body.email,
+        },
+    }).then((dbPatientData) => {
+        if (!dbPatientData) {
+            res.status(400).json({
+                message: 'No patient with that email address!',
+            });
+            return;
+        }
 
-//     const validPassword = dbPatiendData.checkPassword(req.body.password);
+        const validPassword = dbPatientData.checkPassword(req.body.password);
 
-//     if (!validPassword) {
-//       res.status(400).json({ message: 'Incorrect password!' });
-//       return;
-//     }
+        if (!validPassword) {
+            res.status(400).json({ message: 'Incorrect password!' });
+            return;
+        }
 
-//     req.session.save(() => {
-//       // declare session variables
-//       req.session.patient_id = dbPatiendData.id;
-//       req.session.name = dbPatiendData.name;
-//       req.session.loggedIn = true;
+        req.session.save(() => {
+            // declare session variables
+            req.session.patient_id = dbPatientData.id;
+            req.session.username = dbPatientData.username;
+            req.session.loggedIn = true;
 
-//       res.json({ user: dbPatiendData, message: 'You are now logged in!' });
-//     });
-//   });
-// });
+            res.json({
+                user: dbPatientData,
+                message: 'You are now logged in!',
+            });
+        });
+    });
+});
 
 //logout of session
-// router.post('/logout', withAuth, (req, res) => {
-//   if (req.session.loggedIn) {
-//     req.session.destroy(() => {
-//       res.status(204).end();
-//     });
-//   } else {
-//     res.status(404).end();
-//   }
-// });
+router.post('/logout', withAuth, (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+});
 
 module.exports = router;
