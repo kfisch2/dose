@@ -2,11 +2,7 @@ const router = require('express').Router();
 const withAuth = require('../../utils/withAuth');
 //add withAuth to loggout route
 
-const {
-    Patient,
-    Prescription,
-    Diagnosis,
-} = require('../../models');
+const { Patient, Prescription, Diagnosis } = require('../../models');
 
 // GET all Patients
 router.get('/', (req, res) => {
@@ -64,6 +60,7 @@ router.post('/', (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
+        phone_number: req.body.phone_number,
     }).then((dbPatientData) => {
         req.session.save(() => {
             req.session.patient_id = dbPatientData.id;
@@ -74,7 +71,6 @@ router.post('/', (req, res) => {
         });
     });
 });
-
 
 // //CREATE LOGIN
 //This should be good to go - just double check that declared session varables will work
