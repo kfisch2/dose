@@ -19,7 +19,7 @@ async function loginForm(event) {
         });
 
         if (response.ok) {
-            document.location.replace('/home');
+            document.location.replace('/');
             console.log('successful login');
         } else {
             alert(response.statusText);
