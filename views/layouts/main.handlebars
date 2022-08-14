@@ -5,11 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Dose</title>
-<<<<<<<<< Temporary merge branch 1
-    <link rel="stylesheet" href="./public/style.css">
-=========
-    <link rel="stylesheet" href="./public/stylesheets/style.css">
->>>>>>>>> Temporary merge branch 2
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
 </head>
 <body>
     <section>
@@ -20,37 +19,32 @@
                 <a href="#">Appointments</a>
                 <a href="#">Prescriptions</a>
                 <a href="#">Contact Us</a>
+                {{#if loggedIn}}
+                <a href="/homepage">homepage</a>
+                <button id="logout">logout</button>
+                {{else}}
+                <a href="/login" class="loginBtn">Log In</a>
+                {{/if}}
             </div>
         </header>
     <div class="content">
         <div class="info">
-<<<<<<< HEAD
-            <h2>When You Feel Good<br><span>You Feel Good</span></h2>
-=======
-            <h2>When You Feel Good<br>You Feel Good</h2>
->>>>>>> 51dbc83ea64d09507f7aa8cee742ccfb67501e6c
+            {{!-- <h2>When You Feel Good<br>You Feel Good</h2>
             <p>Our mission at Dose is to make sure that you are able to maintain peak health by keeping track 
                of the most important things in your life, namely your prescriptions. We believe that when your 
                body is feeling the best, your mind is free to 
-            </p>
+            </p> --}}
+
+            {{{body}}}
         </div>
     </div>
-<<<<<<< HEAD
-    <div class="boomers">
-        <img src="./public/img/seniors.jpg">
-    </div>
-=======
->>>>>>> 51dbc83ea64d09507f7aa8cee742ccfb67501e6c
     <div class="media-icons">
         <a href="#"></a>
     </div>
 
-
     </section>
     
 </body>
-<<<<<<<<< Temporary merge branch 1
+
 </html>
-=========
-</html>
->>>>>>>>> Temporary merge branch 2
+
