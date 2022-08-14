@@ -96,8 +96,8 @@ header .navigation a:hover {
 /* media queries */
 
 @media only screen and (max-width: 420px) {
-    
-  
+
+
     section {
         position: relative;
         width: 100%;
@@ -106,7 +106,7 @@ header .navigation a:hover {
         flex-direction: column;
         justify-content: flex-start;
     }
-    
+
     header {
         position: fixed;
         top: 0;
@@ -116,7 +116,7 @@ header .navigation a:hover {
         align-items: center;
         background-color: #226A80;
     }
-    
+
     header .logo {
         position: relative;
         color: #000;
@@ -127,7 +127,7 @@ header .navigation a:hover {
         letter-spacing: 1px;
         margin-left: -60px;
     }
-    
+
     header .navigation a{
         color: #000;
         text-decoration: none;
@@ -138,20 +138,20 @@ header .navigation a:hover {
         transition: 0.3s;
         margin-left: 30px;
     }
-    
+
     header .navigation a:not(:last-child){
         margin-right: 30px;
     }
-    
+
     header .navigation a:hover {
         background: #fff;
     }
-    
+
     .content {
         max-width: 650px;
         margin-top: 150px;
     }
-    
+
     .content .info h2{
         color: #226A80;
         font-size: 35px;
@@ -161,13 +161,13 @@ header .navigation a:hover {
         line-height: 40px;
         margin-bottom: 30px;
     }
-    
+
     .content .info h2 span {
         color: #fff;
         font-size: 35px;
         font-weight: 600;
     }
-    
+
     .content .info p{
         font-size: 16px;
         font-weight: 500;
@@ -178,6 +178,6 @@ header .navigation a:hover {
     .boomers {
         display: none;
     }
-  
+
 
 }
