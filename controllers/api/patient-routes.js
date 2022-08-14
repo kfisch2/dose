@@ -66,6 +66,7 @@ router.post('/', (req, res) => {
             req.session.loggedIn = true;
 
             res.json(dbPatientData);
+            console.log(dbPatientData);
         });
     });
 });
