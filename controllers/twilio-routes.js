@@ -31,6 +31,7 @@ router.get('/', async (req, res, next) => {
         results,
     });
     for (i = 0; i < results.length; i++) {
+        // takes refill date and subtracts 3 days for reminder
         let reminderDate = new Date(results[i].refill_date);
         console.log(reminderDate);
         reminderDate.setDate(reminderDate.getDate() - 2);
@@ -39,6 +40,8 @@ router.get('/', async (req, res, next) => {
 
         cron.schedule(`00 12 ${day} ${month} *`, () => {
             console.log('schedule test');
+            // hard coded phone number that is verified on the twilio trial account.
+            // Can change this to take the user's number with a paid twilio account
             sendTextNotification(process.env.PHONE_RECEIVER);
         });
     }
