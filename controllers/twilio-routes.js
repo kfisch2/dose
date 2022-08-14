@@ -8,11 +8,11 @@ const client = require('twilio')(
     process.env.TWILIO_AUTH
 );
 
-function sendTextNotification() {
+function sendTextNotification(phone) {
     client.messages
         .create({
             body: 'Your prescription needs to be refilled in 3 days',
-            to: `+1${process.env.PHONE_RECEIVER}`,
+            to: `+1${phone}`,
             from: process.env.PHONE_SENDER,
         })
         .then((message) => console.log(message))
@@ -21,24 +21,28 @@ function sendTextNotification() {
 
 router.get('/', async (req, res, next) => {
     const results = await Prescription.findAll({
+        where: {
+            patient_id: req.session.patient_id,
+        },
         attibutes: ['id', 'refill_date', 'date_prescribed'],
         raw: true,
     });
     res.status(200).json({
         results,
     });
-    console.log('refill date: ', results[0].refill_date);
     for (i = 0; i < results.length; i++) {
-        const refillDate = results[i].refill_date;
-        const day = refillDate.split('-')[2];
-        const month = refillDate.split('-')[1];
-        // const day = 13;
-        // const month = 8;
-        console.log(`Scheduled reminders for ${month}/${day}`);
+        // takes refill date and subtracts 3 days for reminder
+        let reminderDate = new Date(results[i].refill_date);
+        console.log(reminderDate);
+        reminderDate.setDate(reminderDate.getDate() - 2);
+        const day = reminderDate.getDate();
+        const month = reminderDate.getMonth() + 1;
 
         cron.schedule(`00 12 ${day} ${month} *`, () => {
             console.log('schedule test');
-            //sendTextNotification();
+            // hard coded phone number that is verified on the twilio trial account.
+            // Can change this to take the user's number with a paid twilio account
+            sendTextNotification(process.env.PHONE_RECEIVER);
         });
     }
 });
