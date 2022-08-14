@@ -105,12 +105,12 @@ router.post('/login', (req, res) => {
     // expects {username: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
     Patient.findOne({
         where: {
-            email: req.body.email,
+            username: req.body.username,
         },
     }).then((dbPatientData) => {
         if (!dbPatientData) {
             res.status(400).json({
-                message: 'No patient with that email address!',
+                message: 'No patient with that username!',
             });
             return;
         }
