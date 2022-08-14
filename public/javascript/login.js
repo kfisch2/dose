@@ -1,6 +1,3 @@
-console.log('login page');
-
-
 async function loginForm(event) {
     event.preventDefault();
 
@@ -19,8 +16,8 @@ async function loginForm(event) {
         });
 
         if (response.ok) {
-            document.location.replace('/');
             console.log('successful login');
+            document.location.replace('/');
         } else {
             alert(response.statusText);
         }
@@ -29,7 +26,6 @@ async function loginForm(event) {
 
 async function registerForm(event) {
     event.preventDefault();
-    console.log('clicked');
     const username = document.querySelector('#register-username').value.trim();
     const email = document.querySelector('#register-email').value.trim();
     const phone_number = document.querySelector('#register-number').value.trim();

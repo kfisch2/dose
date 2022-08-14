@@ -57,8 +57,8 @@ router.post('/', (req, res) => {
     Patient.create({
         username: req.body.username,
         email: req.body.email,
-        phone_number: req.body.phone_number,
         password: req.body.password,
+        phone_number: req.body.phone_number,
     }).then((dbPatientData) => {
         req.session.save(() => {
             req.session.patient_id = dbPatientData.id;
@@ -103,14 +103,12 @@ router.put('/:id', (req, res) => {
 //This should be good to go - just double check that declared session varables will work
 
 router.post('/login', (req, res) => {
-    console.log('==================login route')
     // expects {username: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
     Patient.findOne({
         where: {
             username: req.body.username,
         },
     }).then((dbPatientData) => {
-        console.log(dbPatientData);
         if (!dbPatientData) {
             res.status(400).json({
                 message: 'No patient with that email address!',
