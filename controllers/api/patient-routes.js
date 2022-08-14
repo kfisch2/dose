@@ -59,15 +59,19 @@ router.post('/', (req, res) => {
         email: req.body.email,
         password: req.body.password,
         phone_number: req.body.phone_number,
-    }).then((dbPatientData) => {
-        req.session.save(() => {
-            req.session.patient_id = dbPatientData.id;
-            req.session.username = dbPatientData.username;
-            req.session.loggedIn = true;
+    })
+        .then((dbPatientData) => {
+            req.session.save(() => {
+                req.session.patient_id = dbPatientData.id;
+                req.session.username = dbPatientData.username;
+                req.session.loggedIn = true;
 
-            res.json(dbPatientData);
+                res.json(dbPatientData);
+            });
+        })
+        .catch((err) => {
+            res.status(500).json(err);
         });
-    });
 });
 
 //Update a Patient's phonenumber
@@ -101,40 +105,43 @@ router.put('/:id', (req, res) => {
 // //CREATE LOGIN
 //This should be good to go - just double check that declared session varables will work
 
+// Login
 router.post('/login', (req, res) => {
-    // expects {username: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
     Patient.findOne({
         where: {
-            email: req.body.email,
+            username: req.body.username,
         },
     }).then((dbPatientData) => {
+        console.log(dbPatientData);
         if (!dbPatientData) {
             res.status(400).json({
-                message: 'No patient with that email address!',
+                message: 'No user with that username found',
             });
+            console.log(dbPatientData);
             return;
         }
 
+        // Verify user
         const validPassword = dbPatientData.checkPassword(req.body.password);
-
         if (!validPassword) {
+            console.log('wrong pw');
             res.status(400).json({ message: 'Incorrect password!' });
             return;
         }
 
-        req.session.save(() => {
-            // declare session variables
-            req.session.patient_id = dbPatientData.id;
-            req.session.username = dbPatientData.username;
-            req.session.loggedIn = true;
+        // req.session.save(() => {
+        //     // delcare session variables
+        //     req.session.patient_id = dbPatientData.id;
+        //     req.session.username = dbPatientData.username;
+        //     req.session.loggedIn = true;
 
-            res.json({
-                user: dbPatientData,
-                message: 'You are now logged in!',
-            });
+        res.json({
+            patient: dbPatientData,
+            message: 'You are now logged in.',
         });
     });
 });
+// });
 
 //logout of session
 router.post('/logout', withAuth, (req, res) => {

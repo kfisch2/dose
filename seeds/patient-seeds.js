@@ -2,19 +2,19 @@ const { Patient } = require('../models');
 
 const patientData = [
     {
-        username: 'Person 1',
+        username: 'Person1',
         email: 'email@gmail.com',
         password: 'yourpassword',
         phone_number: '1234567895',
     },
     {
-        username: 'Person 2',
+        username: 'Person2',
         email: 'email@yahoo.com',
         password: '123',
         phone_number: '234',
     },
     {
-        username: 'Person 3',
+        username: 'Person3',
         email: 'email@hotmail.com',
         password: 'DasPassMan',
         phone_number: '971',

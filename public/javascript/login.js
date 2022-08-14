@@ -1,22 +1,26 @@
 async function loginForm(event) {
     event.preventDefault();
 
-    // username and password 
+    // username and password
     const username = document.querySelector('#login-username').value.trim();
     const password = document.querySelector('#login-pw').value.trim();
-
+    // console.log(username, password);
     if (username && password) {
-        const response = await fetch('/api/patient/login', {
+        // console.log(username, password);
+        const response = await fetch('/api/patients/login', {
             method: 'post',
             body: JSON.stringify({
                 username,
-                password
+                password,
             }),
-            headers: { 'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' },
         });
+        // console.log(response.body);
+        console.log('here');
 
         if (response.ok) {
-            document.location.replace('/home');
+            // change to DASHBOARD when it's up and running
+            document.location.replace('/');
         } else {
             alert(response.statusText);
         }
@@ -32,33 +36,31 @@ async function registerForm(event) {
     const pw = document.querySelector('#register-pw').value.trim();
 
     if (username && email && number && pw) {
-        const response = await fetch('/api/patient', {
+        const response = await fetch('/api/patients', {
             method: 'post',
             body: JSON.stringify({
                 username,
                 email,
                 number,
-                password
+                password,
             }),
-            headers: { 'Content-Type': 'application.json' }
+            headers: { 'Content-Type': 'application.json' },
         });
         if (response.ok) {
             document.location.replace('/home');
-        }
-        else if (username && email && pw) {
+        } else if (username && email && pw) {
             const response = await fetch('/api/patient', {
                 method: 'post',
                 body: JSON.stringify({
-                    username, 
+                    username,
                     email,
-                    pw
+                    password,
                 }),
-                headers: { 'Content-Type': 'application.json' }
+                headers: { 'Content-Type': 'application.json' },
             });
             if (response.ok) {
                 document.location.replace('/home');
-            }
-            else {
+            } else {
                 alert(response.statusText);
             }
         }
@@ -66,4 +68,6 @@ async function registerForm(event) {
 }
 
 document.querySelector('.login-form').addEventListener('submit', loginForm);
-document.querySelector('.register-form').addEventListener('submit', registerForm);
+document
+    .querySelector('.register-form')
+    .addEventListener('submit', registerForm);
