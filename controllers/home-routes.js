@@ -12,11 +12,10 @@ router.get('/login', (req, res) => {
         res.redirect('/');
         return;
     }
-
     res.render('login');
 });
 
-router.get('/presciptions'),
+router.get('/prescriptions'),
     (req, res) => {
         Patient.findAll({
             attributes: ['id', 'name', 'email'],
