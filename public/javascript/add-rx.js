@@ -4,6 +4,8 @@ async function addRx(event) {
     const medication = document.querySelector('input[name="rx-name"]').value;
     const cost = document.querySelector('input["rx-cost"]').value;
     const fillDate = document.querySelector('input[name="fill-date"]')
-    const medication = document.querySelector('input[name="rx-name"]').value;
-    const medication = document.querySelector('input[name="rx-name"]').value;
+    const refillDate = document.querySelector('input[name="refill-date"]').value;
+    const diagnosis = document.querySelector('input[name="med-diag"]').value;
+
+    
 }
