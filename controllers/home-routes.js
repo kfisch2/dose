@@ -4,7 +4,9 @@ const { Patient, Prescription, Diagnosis } = require('../models');
 require('dotenv').config();
 
 router.get('/', (req, res) => {
-    res.render('homepage2');
+    res.render('homepage2', {
+        loggedIn: req.session.loggedIn,
+    });
 });
 
 router.get('/login', (req, res) => {
