@@ -66,6 +66,7 @@ router.post('/', (req, res) => {
             req.session.loggedIn = true;
 
             res.json(dbPatientData);
+            console.log(dbPatientData);
         });
     });
 });
@@ -105,7 +106,7 @@ router.post('/login', (req, res) => {
     // expects {username: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
     Patient.findOne({
         where: {
-            email: req.body.email,
+            username: req.body.username,
         },
     }).then((dbPatientData) => {
         if (!dbPatientData) {
