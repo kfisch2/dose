@@ -1,3 +1,6 @@
+console.log('login page');
+
+
 async function loginForm(event) {
     event.preventDefault();
 
@@ -6,7 +9,7 @@ async function loginForm(event) {
     const password = document.querySelector('#login-pw').value.trim();
 
     if (username && password) {
-        const response = await fetch('/api/patient/login', {
+        const response = await fetch('/api/patients/login', {
             method: 'post',
             body: JSON.stringify({
                 username,
@@ -17,6 +20,7 @@ async function loginForm(event) {
 
         if (response.ok) {
             document.location.replace('/home');
+            console.log('successful login');
         } else {
             alert(response.statusText);
         }
@@ -25,45 +29,49 @@ async function loginForm(event) {
 
 async function registerForm(event) {
     event.preventDefault();
-
+    console.log('clicked');
     const username = document.querySelector('#register-username').value.trim();
     const email = document.querySelector('#register-email').value.trim();
-    const number = document.querySelector('#register-number').value.trim();
-    const pw = document.querySelector('#register-pw').value.trim();
+    const phone_number = document.querySelector('#register-number').value.trim();
+    const password = document.querySelector('#register-pw').value.trim();
 
-    if (username && email && number && pw) {
-        const response = await fetch('/api/patient', {
+    if (username && email && phone_number && password) {
+        console.log(username, email, phone_number, password);
+        const response = await fetch('/api/patients', {
             method: 'post',
             body: JSON.stringify({
                 username,
                 email,
-                number,
+                phone_number,
                 password
             }),
             headers: { 'Content-Type': 'application.json' }
         });
         if (response.ok) {
             document.location.replace('/home');
+            console.log('successful register');
         }
-        else if (username && email && pw) {
-            const response = await fetch('/api/patient', {
+        else if (username && email && password) {
+            const response = await fetch('/api/patients', {
                 method: 'post',
                 body: JSON.stringify({
                     username, 
                     email,
-                    pw
+                    password
                 }),
                 headers: { 'Content-Type': 'application.json' }
             });
             if (response.ok) {
                 document.location.replace('/home');
+                console.log('successful register');
             }
             else {
                 alert(response.statusText);
+                console.log('failed register');
             }
         }
     }
-}
+};
 
 document.querySelector('.login-form').addEventListener('submit', loginForm);
 document.querySelector('.register-form').addEventListener('submit', registerForm);

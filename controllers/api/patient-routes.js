@@ -57,8 +57,8 @@ router.post('/', (req, res) => {
     Patient.create({
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password,
         phone_number: req.body.phone_number,
+        password: req.body.password,
     }).then((dbPatientData) => {
         req.session.save(() => {
             req.session.patient_id = dbPatientData.id;
@@ -66,6 +66,7 @@ router.post('/', (req, res) => {
             req.session.loggedIn = true;
 
             res.json(dbPatientData);
+            console.log(dbPatientData);
         });
     });
 });
