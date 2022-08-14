@@ -16,7 +16,7 @@ async function loginForm(event) {
         });
 
         if (response.ok) {
-            document.location.replace('/home/');
+            document.location.replace('/home');
         } else {
             alert(response.statusText);
         }
@@ -43,7 +43,7 @@ async function registerForm(event) {
             headers: { 'Content-Type': 'application.json' }
         });
         if (response.ok) {
-            document.location.replace('/home/');
+            document.location.replace('/home');
         }
         else if (username && email && pw) {
             const response = await fetch('/api/patient', {
@@ -56,7 +56,7 @@ async function registerForm(event) {
                 headers: { 'Content-Type': 'application.json' }
             });
             if (response.ok) {
-                document.location.replace('/home/');
+                document.location.replace('/home');
             }
             else {
                 alert(response.statusText);

@@ -12,7 +12,7 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background: url(./img/dose\ background.png);
+    background: url('../assets/images/dose\ background.png');
 }
 
 header {
@@ -82,14 +82,16 @@ header .navigation a:hover {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.boomers {
+/* .boomers {
     display: flex;
     flex-direction: row;
     margin-top: 0px;
     float: right;
     margin-left: 1000px;
     margin-top: -480px;
-}
+} */
+
+
 
 /* media queries */
 

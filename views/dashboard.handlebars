@@ -1,0 +1,48 @@
+<section>
+    <h2>Add Your Prescriptions Here</h2>
+
+    <form class="new-rx">
+        <div>
+            <label for="rx-name">Medication Name</label>
+            <input type="text" id="rx-name" class="form-control" placeholder="Medication Name and Strength" />
+        </div>
+        {{!-- <div>
+            <label for="rx-freq">Medication Instructions</label>
+            <input type="text" id="rx-freq" class="form-control" placeholder="Instructions" />
+        </div>
+        <div>
+            <label for="rx-qty">Medication Quantity</label>
+            <input type="text" id="rx-qty" class="form-control" placeholder="Quantity">
+        </div> --}}
+        <div>
+            <label for="rx-cost">Medication Cost</label>
+            <input type="text" id="rx-cost" class="form-control" placeholder="Cost" />
+        </div>
+        <div>
+            <label for="fill-date">Medication Fill Date</label>
+            <input type="text" id="fill-date" class="form-control" placeholder="Date you got your prescription" />
+        </div>
+        <div>
+            <label for="refill-date">Medication Refill Date</label>
+            <input type="text" id="refill-date" class="form-control" placeholder="Date to refill prescription">
+        </div>
+        <div>
+            <label for="med-diag">Diagnosis</label>
+            <input type="text" id="med-diag" class="form-control" placeholder="Diagnosis">
+        </div>
+    </form>
+</section>
+
+{{#if prescriptions.length}}
+<section>
+    <h3>Your Prescriptions</h3>
+    <ol>
+        {{#each prescriptions as |precription|}}
+        <li>
+            {{> single-rx prescription}}
+            <a href="/dashboard/edit/{{prescription.id}}" class="edit-rx">Edit Prescription</a>
+        </li>
+        {{/each}}
+    </ol>
+</section>
+{{/if}}
