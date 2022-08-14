@@ -21,6 +21,9 @@ function sendTextNotification(phone) {
 
 router.get('/', async (req, res, next) => {
     const results = await Prescription.findAll({
+        where: {
+            patient_id: req.session.patient_id,
+        },
         attibutes: ['id', 'refill_date', 'date_prescribed'],
         raw: true,
     });
