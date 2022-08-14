@@ -1,7 +1,7 @@
 async function loginForm(event) {
     event.preventDefault();
 
-    // username and password 
+    // username and password
     const username = document.querySelector('#login-username').value.trim();
     const password = document.querySelector('#login-pw').value.trim();
 
@@ -10,9 +10,9 @@ async function loginForm(event) {
             method: 'post',
             body: JSON.stringify({
                 username,
-                password
+                password,
             }),
-            headers: { 'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' },
         });
 
         if (response.ok) {
@@ -27,7 +27,9 @@ async function registerForm(event) {
     event.preventDefault();
     const username = document.querySelector('#register-username').value.trim();
     const email = document.querySelector('#register-email').value.trim();
-    const phone_number = document.querySelector('#register-number').value.trim();
+    const phone_number = document
+        .querySelector('#register-number')
+        .value.trim();
     const password = document.querySelector('#register-pw').value.trim();
 
     if (username && email && phone_number && password) {
@@ -38,35 +40,35 @@ async function registerForm(event) {
                 username,
                 email,
                 phone_number,
-                password
+                password,
             }),
-            headers: { 'Content-Type': 'application.json' }
+            headers: { 'Content-Type': 'application.json' },
         });
         if (response.ok) {
             document.location.replace('/home');
             console.log('successful register');
-        }
-        else if (username && email && password) {
+        } else if (username && email && password) {
             const response = await fetch('/api/patients', {
                 method: 'post',
                 body: JSON.stringify({
-                    username, 
+                    username,
                     email,
-                    password
+                    password,
                 }),
-                headers: { 'Content-Type': 'application.json' }
+                headers: { 'Content-Type': 'application.json' },
             });
             if (response.ok) {
                 document.location.replace('/home');
                 console.log('successful register');
-            }
-            else {
+            } else {
                 alert(response.statusText);
                 console.log('failed register');
             }
         }
     }
-};
+}
 
 document.querySelector('.login-form').addEventListener('submit', loginForm);
-document.querySelector('.register-form').addEventListener('submit', registerForm);
+document
+    .querySelector('.register-form')
+    .addEventListener('submit', registerForm);
