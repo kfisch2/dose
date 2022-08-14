@@ -47,4 +47,31 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+router.get('/:id', async (req, res, next) => {
+    const results = await Prescription.findAll({
+        where: {
+            id: req.params.id,
+        },
+        attibutes: ['id', 'refill_date', 'date_prescribed'],
+        raw: true,
+    });
+    res.status(200).json({
+        results,
+    });
+
+    // takes refill date and subtracts 3 days for reminder
+    let reminderDate = new Date(results[i].refill_date);
+    console.log(reminderDate);
+    reminderDate.setDate(reminderDate.getDate() - 2);
+    const day = reminderDate.getDate();
+    const month = reminderDate.getMonth() + 1;
+
+    cron.schedule(`00 12 ${day} ${month} *`, () => {
+        console.log('schedule test');
+        // hard coded phone number that is verified on the twilio trial account.
+        // Can change this to take the user's number with a paid twilio account
+        sendTextNotification(process.env.PHONE_RECEIVER);
+    });
+});
+
 module.exports = router;
