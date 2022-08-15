@@ -18,7 +18,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.get('/presciptions'),
+router.get('/prescriptions'),
     (req, res) => {
         Patient.findAll({
             attributes: ['id', 'name', 'email'],
