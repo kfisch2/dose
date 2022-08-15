@@ -36,4 +36,6 @@ async function editPrescription(event) {
     }
 }
 
-document.querySelector('.edit-prescription-form').addEventListener('submit', editPrescription);
+document
+    .querySelector('.edit-prescription-form')
+    .addEventListener('submit', editPrescription);

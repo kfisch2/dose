@@ -3,8 +3,12 @@ async function addRx(event) {
 
     const rx = document.querySelector('input[name="rx-name"]').value;
     const cost = document.querySelector('input[name="rx-cost"]').value;
-    const date_prescribed = document.querySelector('input[name="fill-date"]').value;
-    const refill_date = document.querySelector('input[name="refill-date"]').value;
+    const date_prescribed = document.querySelector(
+        'input[name="fill-date"]'
+    ).value;
+    const refill_date = document.querySelector(
+        'input[name="refill-date"]'
+    ).value;
     const diagnosis_id = document.querySelector('input[name="med-diag"]').value;
 
     const response = await fetch(`/api/prescriptions`, {
@@ -17,15 +21,15 @@ async function addRx(event) {
             diagnosis_id,
         }),
         headers: {
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+        },
     });
 
     if (response.ok) {
         document.location.replace('/dashboard');
     } else {
         alert(response.statusText);
-    }  
+    }
 }
 
 document.querySelector('.new-rx').addEventListener('submit', addRx);

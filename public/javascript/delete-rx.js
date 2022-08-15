@@ -2,10 +2,10 @@ async function deleteRx(event) {
     event.preventDefault();
 
     const id = window.location.toString().split('/')[
-        window.location.toString().split('/').length-1
+        window.location.toString().split('/').length - 1
     ];
     const response = await fetch(`/api/prescriptions.${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
     });
 
     if (response.ok) {
