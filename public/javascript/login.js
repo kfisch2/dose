@@ -26,12 +26,12 @@ async function loginForm(event) {
 
 async function registerForm(event) {
     event.preventDefault();
-    const username = document.querySelector('#register-username').value.trim();
-    const email = document.querySelector('#register-email').value.trim();
-    const phone_number = document
-        .querySelector('#register-number')
-        .value.trim();
-    const password = document.querySelector('#register-pw').value.trim();
+    const username = document.querySelector('#register-username').value;
+    const email = document.querySelector('#register-email').value;
+    const phone_number = document.querySelector('#register-number').value;
+    const password = document.querySelector('#register-pw').value;
+
+    console.log(username, email, phone_number, password);
 
     if (username && email && phone_number && password) {
         console.log(username, email, phone_number, password);
@@ -43,7 +43,7 @@ async function registerForm(event) {
                 phone_number,
                 password,
             }),
-            headers: { 'Content-Type': 'application.json' },
+            headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
             document.location.replace('/home');
@@ -56,7 +56,7 @@ async function registerForm(event) {
                     email,
                     password,
                 }),
-                headers: { 'Content-Type': 'application.json' },
+                headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {
                 document.location.replace('/home');
