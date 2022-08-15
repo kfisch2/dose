@@ -111,7 +111,7 @@ router.post('/login', (req, res) => {
     }).then((dbPatientData) => {
         if (!dbPatientData) {
             res.status(400).json({
-                message: 'No patient with that email address!',
+                message: 'No patient with that username!',
             });
             return;
         }
