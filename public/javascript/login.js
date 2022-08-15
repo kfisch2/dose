@@ -29,27 +29,30 @@ async function loginForm(event) {
 
 async function registerForm(event) {
     event.preventDefault();
+    const username = document.querySelector('#register-username').value;
+    const email = document.querySelector('#register-email').value;
+    const phone_number = document.querySelector('#register-number').value;
+    const password = document.querySelector('#register-pw').value;
 
-    const username = document.querySelector('#register-username').value.trim();
-    const email = document.querySelector('#register-email').value.trim();
-    const number = document.querySelector('#register-number').value.trim();
-    const pw = document.querySelector('#register-pw').value.trim();
+    console.log(username, email, phone_number, password);
 
-    if (username && email && number && pw) {
+    if (username && email && phone_number && password) {
+        console.log(username, email, phone_number, password);
         const response = await fetch('/api/patients', {
             method: 'post',
             body: JSON.stringify({
                 username,
                 email,
-                number,
+                phone_number,
                 password,
             }),
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
             document.location.replace('/home');
-        } else if (username && email && pw) {
-            const response = await fetch('/api/patient', {
+            console.log('successful register');
+        } else if (username && email && password) {
+            const response = await fetch('/api/patients', {
                 method: 'post',
                 body: JSON.stringify({
                     username,
@@ -59,7 +62,8 @@ async function registerForm(event) {
                 headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {
-                document.location.replace('/dashboard');
+                document.location.replace('/home');
+                console.log('successful register');
             } else {
                 alert(response.statusText);
             }

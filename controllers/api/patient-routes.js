@@ -144,7 +144,7 @@ router.post('/login', (req, res) => {
 // });
 
 //logout of session
-router.post('/logout', withAuth, (req, res) => {
+router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();
