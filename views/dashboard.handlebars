@@ -36,30 +36,19 @@
     </form>
 </section>
 
-{{!-- {{#if prescriptions.length}} --}}
+{{#if prescriptions.length}}
 <section>
     <h3>Your Prescriptions</h3>
     <ol>
-        {{!-- {{#each prescriptions as |prescription|}} --}}
+        {{#each prescriptions as |prescription|}}
         <li>
-            <div class='single-rx'>
-                <h3>{{prescription.rx}}</h3>
-                <h4>Refill by: {{prescription.refill_date}}</h4>
-
-                    <div class='secondary-info'>
-                        <div>${{prescription.cost}}</div>
-                     <div>
-                        Prescribed on:
-                        {{prescription.date_prescribed}}</div>
-                    </div>
-
-            </div>
+            
             {{> single-rx prescription}}
-            {{!-- <a href="/dashboard/edit/{{prescription.id}}" class="edit-rx">Edit Prescription</a> --}}
+            <a href="/dashboard/edit/{{prescription.id}}" class="edit-rx">Edit Prescription</a>
         </li>
-        {{!-- {{/each}} --}}
+        {{/each}}
     </ol>
 </section>
-{{!-- {{/if}} --}}
+{{/if}}
 
 <script src="/javascript/add-rx.js"></script>
