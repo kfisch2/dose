@@ -4,7 +4,7 @@ async function deleteRx(event) {
     const id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
     ];
-    const response = await fetch(`/api/prescriptions.${id}`, {
+    const response = await fetch(`/api/prescriptions/${id}`, {
         method: 'DELETE',
     });
 
@@ -15,4 +15,4 @@ async function deleteRx(event) {
     }
 }
 
-document.querySelector('.deleteRx-btn').addEventListener('click', deleteRx);
+document.querySelector('#delete-rx-btn').addEventListener('click', deleteRx);
