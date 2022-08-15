@@ -1,5 +1,20 @@
 // Trigger alert functions
 
+// Incorrect username or password
+const wrongUser_PW = () => {
+    const alertPlaceholder = document.querySelector('.login-alert');
+    const alert = (message, type) => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>',
+        ].join('');
+        alertPlaceholder.append(wrapper);
+    };
+        alert(`Wrong username or password`, 'danger')
+};
+  
 // Missing login field function
 const missingFieldLogin = (field) => {
     const alertPlaceholder = document.querySelector('.login-alert');
@@ -29,8 +44,6 @@ const missingFieldRegister = (field) => {
     };
         alert(`${field} required`, 'danger')
 }
-
-
 
 // LOGIN FORM
 async function loginForm(event) {
@@ -63,7 +76,7 @@ async function loginForm(event) {
             console.log('successful login');
             document.location.replace('/dashboard');
         } else {
-            alert(response.statusText);
+            wrongUser_PW();
         }
     }
 }
@@ -79,15 +92,15 @@ async function registerForm(event) {
 
 
     // Missing fields
-    if (!username) {
-        missingFieldRegister('username');
-    };
-    if (!password){
-        missingFieldRegister('password')
-    };
-    if (!email) {
-        missingFieldRegister('email')
-    };
+    // if (!username) {
+    //     missingFieldRegister('username');
+    // };
+    // if (!password){
+    //     missingFieldRegister('password')
+    // };
+    // if (!email) {
+    //     missingFieldRegister('email')
+    // };
 
     if (username && email && phone_number && password) {
         console.log(username, email, phone_number, password);
