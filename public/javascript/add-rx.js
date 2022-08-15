@@ -1,20 +1,20 @@
 async function addRx(event) {
     event.preventDefault();
 
-    const medication = document.querySelector('input[name="rx-name"]').value;
-    const cost = document.querySelector('input["rx-cost"]').value;
-    const fillDate = document.querySelector('input[name="fill-date"]')
-    const refillDate = document.querySelector('input[name="refill-date"]').value;
-    const diagnosis = document.querySelector('input[name="med-diag"]').value;
+    const rx = document.querySelector('input[name="rx-name"]').value;
+    const cost = document.querySelector('input[name="rx-cost"]').value;
+    const date_prescribed = document.querySelector('input[name="fill-date"]')
+    const refill_date = document.querySelector('input[name="refill-date"]').value;
+    const diagnosis_id = document.querySelector('input[name="med-diag"]').value;
 
     const response = await fetch(`/api/prescriptions`, {
         method: 'POST',
         body: JSON.stringify({
-            medication,
+            rx,
             cost,
-            fillDate,
-            refillDate,
-            diagnosis,
+            date_prescribed,
+            refill_date,
+            diagnosis_id,
         }),
         headers: {
             'Content-Type': 'application/json'

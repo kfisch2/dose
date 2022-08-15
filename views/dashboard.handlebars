@@ -4,7 +4,7 @@
     <form class="new-rx">
         <div>
             <label for="rx-name">Medication Name</label>
-            <input type="text" id="rx-name" class="form-control" placeholder="Medication Name and Strength" />
+            <input type="text" id="rx-name" class="form-control" name="rx-name" placeholder="Medication Name and Strength" />
         </div>
         {{!-- <div>
             <label for="rx-freq">Medication Instructions</label>
@@ -16,19 +16,19 @@
         </div> --}}
         <div>
             <label for="rx-cost">Medication Cost</label>
-            <input type="text" id="rx-cost" class="form-control" placeholder="Cost" />
+            <input type="text" id="rx-cost" class="form-control" name="rx-cost" placeholder="Cost" />
         </div>
         <div>
             <label for="fill-date">Medication Fill Date</label>
-            <input type="text" id="fill-date" class="form-control" placeholder="Date you got your prescription" />
+            <input type="text" id="fill-date" class="form-control" name="fill-date" placeholder="Date you got your prescription" />
         </div>
         <div>
             <label for="refill-date">Medication Refill Date</label>
-            <input type="text" id="refill-date" class="form-control" placeholder="Date to refill prescription">
+            <input type="text" id="refill-date" class="form-control" name="refill-date" placeholder="Date to refill prescription">
         </div>
         <div>
             <label for="med-diag">Diagnosis</label>
-            <input type="text" id="med-diag" class="form-control" placeholder="Diagnosis">
+            <input type="text" id="med-diag" class="form-control" name="med-diag" placeholder="Diagnosis">
         </div>
         <div>
             <button type="submit" id="add-rx" class="form-control">Add RX</button>
@@ -36,18 +36,30 @@
     </form>
 </section>
 
-{{#if prescriptions.length}}
+{{!-- {{#if prescriptions.length}} --}}
 <section>
     <h3>Your Prescriptions</h3>
     <ol>
-        {{#each prescriptions as |precription|}}
+        {{!-- {{#each prescriptions as |prescription|}} --}}
         <li>
+            <div class='single-rx'>
+                <h3>{{prescription.rx}}</h3>
+                <h4>Refill by: {{prescription.refill_date}}</h4>
+
+                    <div class='secondary-info'>
+                        <div>${{prescription.cost}}</div>
+                     <div>
+                        Prescribed on:
+                        {{prescription.date_prescribed}}</div>
+                    </div>
+
+            </div>
             {{> single-rx prescription}}
-            <a href="/dashboard/edit/{{prescription.id}}" class="edit-rx">Edit Prescription</a>
+            {{!-- <a href="/dashboard/edit/{{prescription.id}}" class="edit-rx">Edit Prescription</a> --}}
         </li>
-        {{/each}}
+        {{!-- {{/each}} --}}
     </ol>
 </section>
-{{/if}}
+{{!-- {{/if}} --}}
 
 <script src="/javascript/add-rx.js"></script>
