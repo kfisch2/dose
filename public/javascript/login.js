@@ -20,7 +20,7 @@ async function loginForm(event) {
 
         if (response.ok) {
             // change to DASHBOARD when it's up and running
-            document.location.replace('/');
+            document.location.replace('/dashboard');
         } else {
             alert(response.statusText);
         }
@@ -44,7 +44,7 @@ async function registerForm(event) {
                 number,
                 password,
             }),
-            headers: { 'Content-Type': 'application.json' },
+            headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
             document.location.replace('/home');
@@ -56,10 +56,10 @@ async function registerForm(event) {
                     email,
                     password,
                 }),
-                headers: { 'Content-Type': 'application.json' },
+                headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {
-                document.location.replace('/home');
+                document.location.replace('/dashboard');
             } else {
                 alert(response.statusText);
             }
