@@ -4,7 +4,7 @@ const withAuth = require('../utils/withAuth');
 const { Prescription, Diagnosis, Patient } = require('../models');
 
 // GET all Prescription
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     console.log('made it here');
     // Prescription.findAll({
     //     where: {
