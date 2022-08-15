@@ -1,3 +1,19 @@
+// Trigger alert
+const missingField = () => {
+    const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+    const alert = (message, type) => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>',
+        ].join('');
+        alertPlaceholder.append(wrapper);
+    };
+        alert(`username and password required`, 'danger')
+}
+
+// LOGIN FORM
 async function loginForm(event) {
     event.preventDefault();
 
@@ -5,6 +21,12 @@ async function loginForm(event) {
     const username = document.querySelector('#login-username').value.trim();
     const password = document.querySelector('#login-pw').value.trim();
 
+    // Missing fields
+    if (!username || !password) {
+        missingField('');
+    };
+
+    // Filled fields
     if (username && password) {
         const response = await fetch('/api/patients/login', {
             method: 'post',
@@ -24,6 +46,8 @@ async function loginForm(event) {
     }
 }
 
+
+// REGISTER FORM 
 async function registerForm(event) {
     event.preventDefault();
     const username = document.querySelector('#register-username').value;

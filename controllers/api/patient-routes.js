@@ -110,6 +110,7 @@ router.post('/login', (req, res) => {
         },
     }).then((dbPatientData) => {
         if (!dbPatientData) {
+            // missing field function
             res.status(400).json({
                 message: 'No patient with that username!',
             });
@@ -119,6 +120,7 @@ router.post('/login', (req, res) => {
         const validPassword = dbPatientData.checkPassword(req.body.password);
 
         if (!validPassword) {
+            // missing field function
             res.status(400).json({ message: 'Incorrect password!' });
             return;
         }
