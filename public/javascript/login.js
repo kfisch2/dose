@@ -17,7 +17,7 @@ async function loginForm(event) {
 
         if (response.ok) {
             console.log('successful login');
-            document.location.replace('/');
+            document.location.replace('/dashboard');
         } else {
             alert(response.statusText);
         }
@@ -59,7 +59,7 @@ async function registerForm(event) {
                 headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {
-                document.location.replace('/home');
+                document.location.replace('/dashboard');
                 console.log('successful register');
             } else {
                 alert(response.statusText);
