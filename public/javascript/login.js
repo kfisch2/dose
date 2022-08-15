@@ -1,6 +1,8 @@
-// Trigger alert
-const missingField = () => {
-    const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+// Trigger alert functions
+
+// Missing login field function
+const missingFieldLogin = (field) => {
+    const alertPlaceholder = document.querySelector('.login-alert');
     const alert = (message, type) => {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = [
@@ -10,8 +12,25 @@ const missingField = () => {
         ].join('');
         alertPlaceholder.append(wrapper);
     };
-        alert(`username and password required`, 'danger')
+        alert(`${field} required`, 'danger')
+};
+
+// Missing register field function
+const missingFieldRegister = (field) => {
+    const alertPlaceholder = document.querySelector('.register-alert');
+    const alert = (message, type) => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>',
+        ].join('');
+        alertPlaceholder.append(wrapper);
+    };
+        alert(`${field} required`, 'danger')
 }
+
+
 
 // LOGIN FORM
 async function loginForm(event) {
@@ -23,8 +42,11 @@ async function loginForm(event) {
 
     // Missing fields
     if (!username || !password) {
-        missingField('');
+        missingFieldLogin('username');
     };
+    if (!password){
+        missingFieldLogin('password')
+    }
 
     // Filled fields
     if (username && password) {
@@ -55,7 +77,17 @@ async function registerForm(event) {
     const phone_number = document.querySelector('#register-number').value;
     const password = document.querySelector('#register-pw').value;
 
-    console.log(username, email, phone_number, password);
+
+    // Missing fields
+    if (!username) {
+        missingFieldRegister('username');
+    };
+    if (!password){
+        missingFieldRegister('password')
+    };
+    if (!email) {
+        missingFieldRegister('email')
+    };
 
     if (username && email && phone_number && password) {
         console.log(username, email, phone_number, password);
