@@ -67,12 +67,13 @@ router.get('/:id', async (req, res, next) => {
     const month = reminderDate.getMonth() + 1;
     console.log(`reminder day: ${day}; reminder month: ${month}`);
 
-    cron.schedule(`12 19 ${day} ${month} *`, () => {
+    const textNotification = cron.schedule(`12 19 ${day} ${month} *`, () => {
         console.log('schedule test');
         // hard coded phone number that is verified on the twilio trial account.
         // Can change this to take the user's number with a paid twilio account
         sendTextNotification(process.env.PHONE_RECEIVER);
     });
+    textNotification.start();
 });
 
 module.exports = router;
