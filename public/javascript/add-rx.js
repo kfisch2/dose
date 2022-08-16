@@ -9,7 +9,7 @@ async function addRx(event) {
     const refill_date = document.querySelector(
         'input[name="refill-date"]'
     ).value;
-    const diagnosis_id = document.querySelector('input[name="med-diag"]').value;
+    // const diagnosis_id = document.querySelector('input[name="med-diag"]').value;
 
     const response = await fetch(`/api/prescriptions`, {
         method: 'POST',
@@ -18,7 +18,7 @@ async function addRx(event) {
             cost,
             date_prescribed,
             refill_date,
-            diagnosis_id,
+            // diagnosis_id,
         }),
         headers: {
             'Content-Type': 'application/json',
