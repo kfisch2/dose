@@ -40,13 +40,13 @@ Prescription.init(
                 key: 'id',
             },
         },
-        diagnosis_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'diagnosis',
-                key: 'id',
-            },
-        },
+        // diagnosis_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'diagnosis',
+        //         key: 'id',
+        //     },
+        // },
     },
     {
         sequelize,

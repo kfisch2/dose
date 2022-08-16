@@ -12,7 +12,7 @@ router.get('/', withAuth, (req, res) => {
         },
         attributes: ['id', 'rx', 'cost', 'refill_date', 'date_prescribed'],
         include: [
-            { model: Diagnosis, attributes: ['id', 'diagnosis_name'] },
+            // { model: Diagnosis, attributes: ['id', 'diagnosis_name'] },
             { model: Patient, attributes: ['username'] },
         ],
     })
@@ -34,7 +34,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
     Prescription.findByPk(req.params.id, {
         attributes: ['cost', 'refill_date'],
         include: [
-            { model: Diagnosis, attributes: ['id', 'diagnosis_name'] },
+            // { model: Diagnosis, attributes: ['id', 'diagnosis_name'] },
             { model: Patient, attributes: ['username'] },
         ],
     })
