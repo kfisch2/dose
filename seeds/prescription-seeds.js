@@ -12,7 +12,7 @@ const prescriptionData = [
 
     {
         rx: 'MED 2',
-        refill_date: '01/02/2023',
+        refill_date: '01/03/2023',
         date_prescribed: '12/08/2022',
         cost: 250,
         patient_id: 2,
@@ -21,7 +21,7 @@ const prescriptionData = [
 
     {
         rx: 'MED 3',
-        refill_date: '01/02/2023',
+        refill_date: '01/04/2023',
         date_prescribed: '12/08/2022',
         cost: 150,
         patient_id: 3,

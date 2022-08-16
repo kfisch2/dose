@@ -1,6 +1,6 @@
 const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
-//add withAuth to loggout route - and update 
+//add withAuth to loggout route - and update
 
 const { Patient, Prescription, Diagnosis } = require('../../models');
 
@@ -21,9 +21,9 @@ router.get('/:id', (req, res) => {
             id: req.params.id,
         },
         include: [
-            {
-                model: Diagnosis,
-            },
+            // {
+            //     model: Diagnosis,
+            // },
             {
                 model: Patient,
                 attributes: ['id'],
@@ -53,39 +53,47 @@ router.post('/', (req, res) => {
         refill_date: req.body.refill_date,
         date_prescribed: req.body.date_prescribed,
         cost: req.body.cost,
-        patient_id: req.body.patient_id,
-        diagnosis_id: req.body.diagnosis_id,
-        //will be req.session.patiend_id
-    }).then((dbPrescriptionData) => {
-        res.json(dbPrescriptionData);
-    });
+        patient_id: req.session.patient_id,
+        // diagnosis_id: req.body.diagnosis_id,
+    })
+        .then((dbPrescriptionData) => {
+            res.json(dbPrescriptionData);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
-//Update a perscription's title
+//Update a perscription's refill_date and cost
 router.put('/:id', (req, res) => {
     // expects {refill_date: "11/04/2022", cost: 20}
-    Prescription.update( 
-    {
-        refill_date: req.body.refill_date,
-        cost: req.body.cost
-    },
-    {  
-      where: {
-        id: req.params.id
-      }
-    })
-      .then(dbPrescriptionData => {
-        if (!dbPrescriptionData[0]) {
-          res.status(404).json({ message: 'No post found with this id' });
-          return;
+    Prescription.update(
+        {
+            refill_date: req.body.refill_date,
+            cost: req.body.cost,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
         }
-        res.json(dbPrescriptionData);
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
+    )
+        .then((dbPrescriptionData) => {
+            if (!dbPrescriptionData[0]) {
+                res.status(404).json({
+                    message: 'No prescription found with this id',
+                });
+                return;
+            }
+            res.json(dbPrescriptionData);
+            console.log(dbPrescriptionData);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
 
 //Delete Prescription
 router.delete('/:id', (req, res) => {

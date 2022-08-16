@@ -7,7 +7,6 @@ const { Patient, Prescription, Diagnosis } = require('../../models');
 // GET all Patients
 router.get('/', (req, res) => {
     Patient.findAll({
-        //add back when login is created
         attributes: {
             exclude: ['password'],
         },
@@ -22,7 +21,6 @@ router.get('/', (req, res) => {
 // GET one Patient
 router.get('/:id', (req, res) => {
     Patient.findOne({
-        // add when login is created
         attributes: {
             exclude: ['password'],
         },
@@ -55,7 +53,7 @@ router.get('/:id', (req, res) => {
 
 // CREATE Patient
 router.post('/', (req, res) => {
-    // expects {username: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
+    // expects {username: 'robin', email: 'robin-o@gmail.com', password: 'robin1234', phone_number: '2223334444'}
     Patient.create({
         username: req.body.username,
         email: req.body.email,
@@ -68,8 +66,37 @@ router.post('/', (req, res) => {
             req.session.loggedIn = true;
 
             res.json(dbPatientData);
+            console.log(dbPatientData);
         });
     });
+});
+
+//Update a Patient's phonenumber
+router.put('/:id', (req, res) => {
+    // expects {phone_number: 2223334444}
+    Patient.update(
+        {
+            phone_number: req.body.phone_number,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
+        }
+    )
+        .then((dbPatientData) => {
+            if (!dbPatientData[0]) {
+                res.status(404).json({
+                    message: 'No patient found with this id',
+                });
+                return;
+            }
+            res.json(dbPatientData);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 // //CREATE LOGIN
@@ -79,12 +106,13 @@ router.post('/login', (req, res) => {
     // expects {username: 'robin', email: 'robin-o@gmail.com', password: 'robin1234'}
     Patient.findOne({
         where: {
-            email: req.body.email,
+            username: req.body.username,
         },
     }).then((dbPatientData) => {
         if (!dbPatientData) {
+            // missing field function
             res.status(400).json({
-                message: 'No patient with that email address!',
+                message: 'No patient with that username!',
             });
             return;
         }
@@ -92,6 +120,7 @@ router.post('/login', (req, res) => {
         const validPassword = dbPatientData.checkPassword(req.body.password);
 
         if (!validPassword) {
+            // missing field function
             res.status(400).json({ message: 'Incorrect password!' });
             return;
         }
@@ -111,7 +140,7 @@ router.post('/login', (req, res) => {
 });
 
 //logout of session
-router.post('/logout', withAuth, (req, res) => {
+router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();
