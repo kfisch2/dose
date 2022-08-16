@@ -1,28 +1,9 @@
-{{#if diagnosis.length}}
-<section>
-    <h3>Your Diagnosis</h3>
-    <ol>
-        {{#each diagnosis as |diagnosis|}}
-        <li>
-            {{> diagnosis-info diagnosis}}
-            {{!-- <a href="/dashboard/edit/{{prescription.id}}" class="edit-rx">Edit Prescription</a> --}}
-        </li>
-        {{/each}}
-    </ol>
-</section>
+<!--only shows if logged in -->
+{{#if loggedIn}}
 
-<section>
-    <h2>Add Your Diagnosis Here</h2>
+<!-- partial for post html -->
+{{> diagnosis-info diagnosis }}
 
-    <form class="new-diagnosis">
-        <div>
-            <label for="med-diag">Diagnosis</label>
-            <input type="text" id="med-diag" class="form-control" name="med-diag" placeholder="Diagnosis">
-        </div>
-        <div>
-            <button type="submit" id="add-diagnosis" class="form-control">Add Diagnosis</button>
-        </div>
-    </form>
 </section>
 
     <h2>Add Your Prescriptions Here</h2>
@@ -62,6 +43,7 @@
     </form>
 </section>
 
+<!-- partial for comments html-->
 {{#if prescriptions.length}}
 <section>
     <h3>Your Prescriptions</h3>
@@ -76,5 +58,8 @@
 </section>
 {{/if}}
 
+{{/if}}
+
+{{#if loggedIn}}
 <script src="/javascript/add-rx.js"></script>
-<script src="/javascript/add-diagnosis.js"></script>
+{{/if}}

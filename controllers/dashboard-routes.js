@@ -3,6 +3,37 @@ const sequelize = require('../config/connection');
 const withAuth = require('../utils/withAuth');
 const { Prescription, Diagnosis, Patient } = require('../models');
 
+
+//GET all diagnosis
+router.get('/', (req, res) => {
+    console.log('made it here');
+    Diagnosis.findAll({
+        where: {
+            patient_id: req.session.patient_id,
+        },
+        attributes: ['id', 'diagnosis_name'],
+        include: [
+            // { model: Prescription, attributes: ['id', 'rx', 'cost', 'refill_date', 'date_prescribed'] },
+            { model: Patient, attributes: ['username'] },
+        ],
+    })
+        .then((dbDiagnosisData) => {
+            // serialize data before passing to template
+            const diagnosis = dbDiagnosisData.map((diagnosis) =>
+                diagnosis.get({ plain: true })
+            );
+            res.render('dashboard', { diagnosis, loggedIn: true });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+//Edit Diagnosis
+
+
+
 // GET all Prescription
 router.get('/', (req, res) => {
     console.log('made it here');

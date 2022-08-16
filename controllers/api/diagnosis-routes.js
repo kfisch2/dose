@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
     // expects {name: 'ADHD', Patient_id: '1'}
     Diagnosis.create({
         diagnosis_name: req.body.diagnosis_name,
-        patient_id: req.body.patient_id,
+        patient_id: req.session.patient_id,
         //will be req.session.patiend_id
     }).then((dbDiagnosisData) => {
         res.json(dbDiagnosisData);
