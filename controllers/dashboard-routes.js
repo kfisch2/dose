@@ -30,7 +30,7 @@ router.get('/', withAuth, (req, res) => {
 });
 
 //get edit prescription
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', withAuth, (req, res) => {
     Prescription.findByPk(req.params.id, {
         attributes: ['cost', 'refill_date'],
         include: [

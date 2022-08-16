@@ -46,7 +46,7 @@ async function registerForm(event) {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            document.location.replace('/home');
+            document.location.replace('/dashboard');
             console.log('successful register');
         } else if (username && email && password) {
             const response = await fetch('/api/patients', {
