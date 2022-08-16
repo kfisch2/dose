@@ -68,6 +68,8 @@ router.post('/', (req, res) => {
             res.json(dbPatientData);
             console.log(dbPatientData);
         });
+    }).catch((err) => {
+        res.status(500).json(err);
     });
 });
 

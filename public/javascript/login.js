@@ -2,7 +2,7 @@
 
 // Pre-existing username/email/phone number
 const alreadyExists = (field) => {
-    const alertPlaceholder = document.querySelector('.login-alert');
+    const alertPlaceholder = document.querySelector('.register-alert');
     const alert = (message, type) => {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = [
@@ -12,7 +12,7 @@ const alreadyExists = (field) => {
         ].join('');
         alertPlaceholder.append(wrapper);
     };
-        alert(`${field} already used with an existing account`, 'danger')
+        alert(`username, email, or phone number already in use`, 'danger')
 };
 
 // Incorrect username or password
@@ -117,9 +117,9 @@ async function registerForm(event) {
     if (!email) {
         missingFieldRegister('email')
     };
-    if (!phone_number) {
-        missingFieldRegister('phone number')
-    }
+
+
+
 
     if (username && email && phone_number && password) {
         console.log(username, email, phone_number, password);
@@ -137,28 +137,28 @@ async function registerForm(event) {
             document.location.replace('/dashboard');
             console.log('successful register');
         } else {
-            alert(response.statusText)
-        }    
-        if (username && email && password) {
-            const response = await fetch('/api/patients', {
-                method: 'post',
-                body: JSON.stringify({
-                    username,
-                    email,
-                    password,
-                }),
-                headers: { 'Content-Type': 'application/json' },
-            });
-            if (response.ok) {
-                document.location.replace('/dashboard');
-                console.log('successful register');
-            } else {
-                alert(response.statusText);
-                console.log('failed register');
-            }
-        }
-    }
-}
+            alert(response.statusText);
+        }; 
+    }; 
+
+    if (username && email && password) {
+        const response = await fetch('/api/patients', {
+            method: 'post',
+            body: JSON.stringify({
+                username,
+                email,
+                password,
+            }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        if (response.ok) {
+            document.location.replace('/dashboard');
+            console.log('successful register');
+        } else {
+            alreadyExists();
+        };
+    };
+};
 
 document.querySelector('.login-form').addEventListener('submit', loginForm);
 document
