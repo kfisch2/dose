@@ -21,9 +21,9 @@ router.get('/:id', (req, res) => {
             id: req.params.id,
         },
         include: [
-            {
-                model: Diagnosis,
-            },
+            // {
+            //     model: Diagnosis,
+            // },
             {
                 model: Patient,
                 attributes: ['id'],
@@ -54,8 +54,7 @@ router.post('/', (req, res) => {
         date_prescribed: req.body.date_prescribed,
         cost: req.body.cost,
         patient_id: req.session.patient_id,
-        diagnosis_id: req.body.diagnosis_id,
-        //will be req.session.patiend_id
+        // diagnosis_id: req.body.diagnosis_id,
     })
         .then((dbPrescriptionData) => {
             res.json(dbPrescriptionData);
