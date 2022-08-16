@@ -118,9 +118,6 @@ async function registerForm(event) {
         missingFieldRegister('email')
     };
 
-
-
-
     if (username && email && phone_number && password) {
         console.log(username, email, phone_number, password);
         const response = await fetch('/api/patients', {
@@ -137,7 +134,7 @@ async function registerForm(event) {
             document.location.replace('/dashboard');
             console.log('successful register');
         } else {
-            alert(response.statusText);
+            alreadyExists();
         }; 
     }; 
 
