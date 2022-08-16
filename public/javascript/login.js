@@ -1,5 +1,20 @@
 // Trigger alert functions
 
+// Pre-existing username/email/phone number
+const alreadyExists = (field) => {
+    const alertPlaceholder = document.querySelector('.login-alert');
+    const alert = (message, type) => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>',
+        ].join('');
+        alertPlaceholder.append(wrapper);
+    };
+        alert(`${field} already used with an existing account`, 'danger')
+};
+
 // Incorrect username or password
 const wrongUser_PW = () => {
     const alertPlaceholder = document.querySelector('.login-alert');
@@ -85,6 +100,7 @@ async function loginForm(event) {
 // REGISTER FORM 
 async function registerForm(event) {
     event.preventDefault();
+    console.log('clicked')
     const username = document.querySelector('#register-username').value;
     const email = document.querySelector('#register-email').value;
     const phone_number = document.querySelector('#register-number').value;
@@ -92,15 +108,18 @@ async function registerForm(event) {
 
 
     // Missing fields
-    // if (!username) {
-    //     missingFieldRegister('username');
-    // };
-    // if (!password){
-    //     missingFieldRegister('password')
-    // };
-    // if (!email) {
-    //     missingFieldRegister('email')
-    // };
+    if (!username) {
+        missingFieldRegister('username');
+    };
+    if (!password){
+        missingFieldRegister('password')
+    };
+    if (!email) {
+        missingFieldRegister('email')
+    };
+    if (!phone_number) {
+        missingFieldRegister('phone number')
+    }
 
     if (username && email && phone_number && password) {
         console.log(username, email, phone_number, password);
@@ -115,9 +134,12 @@ async function registerForm(event) {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            document.location.replace('/home');
+            document.location.replace('/dashboard');
             console.log('successful register');
-        } else if (username && email && password) {
+        } else {
+            alert(response.statusText)
+        }    
+        if (username && email && password) {
             const response = await fetch('/api/patients', {
                 method: 'post',
                 body: JSON.stringify({
