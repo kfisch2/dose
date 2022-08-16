@@ -13,6 +13,8 @@ section {
     flex-direction: column;
     justify-content: flex-start;
     background: url('../assets/images/dose\ background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 header {
@@ -178,6 +180,5 @@ header .navigation a:hover {
     .boomers {
         display: none;
     }
-
-
 }
+
