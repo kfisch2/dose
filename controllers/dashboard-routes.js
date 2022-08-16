@@ -10,7 +10,7 @@ router.get('/', withAuth, (req, res) => {
         where: {
             patient_id: req.session.patient_id,
         },
-        attributes: ['rx', 'cost', 'date_prescribed', 'refill_date'],
+        attributes: ['id', 'rx', 'cost', 'refill_date', 'date_prescribed'],
         include: [
             { model: Diagnosis, attributes: ['id', 'diagnosis_name'] },
             { model: Patient, attributes: ['username'] },
@@ -25,6 +25,32 @@ router.get('/', withAuth, (req, res) => {
         })
         .catch((err) => {
             console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+//get edit prescription
+router.get('/edit/:id', withAuth, (req, res) => {
+    Prescription.findByPk(req.params.id, {
+        attributes: ['cost', 'refill_date'],
+        include: [
+            { model: Diagnosis, attributes: ['id', 'diagnosis_name'] },
+            { model: Patient, attributes: ['username'] },
+        ],
+    })
+        .then((dbPrescriptionData) => {
+            if (dbPrescriptionData) {
+                const prescription = dbPrescriptionData.get({ plain: true });
+
+                res.render('edit-prescription', {
+                    prescription,
+                    loggedIn: true,
+                });
+            } else {
+                res.status(404).end();
+            }
+        })
+        .catch((err) => {
             res.status(500).json(err);
         });
 });
