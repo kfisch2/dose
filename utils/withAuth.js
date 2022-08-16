@@ -1,8 +1,9 @@
 // verifies user is logged in
 const withAuth = (req, res, next) => {
-    if (!req.session.user_id) {
+    if (!req.session.patient_id) {
         res.redirect('/login');
     } else {
+        console.log('made it');
         next();
     }
 };

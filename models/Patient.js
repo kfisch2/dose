@@ -46,7 +46,7 @@ Patient.init(
         },
         phone_number: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 is: phoneValidationRegex,
             },
