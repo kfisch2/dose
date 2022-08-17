@@ -1,4 +1,4 @@
-<section>
+<section class="edit-rx-form">
     <a href='/dashboard'> &larr; Back to dashboard</a>
     <h2>Edit Prescriptions {{prescription.rx}}</h2>
 
@@ -39,6 +39,8 @@
             <button type='submit' class='form-control'>Update RX</button>
             <button type='click' id='delete-rx-btn' class='form-control'>Delete
                 RX</button>
+            <div id='liveAlertPlaceholder' class='emptyDate-alert'></div>
+            <div id="liveAlertPlaceholder" class="date-alert"></div>
             <button
                 type='click'
                 id='notification-btn'
