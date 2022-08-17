@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "jest",
+    "start": "node server.js",
+    "seeds": ""
   },
   "repository": {
     "type": "git",
@@ -20,13 +21,22 @@
   "homepage": "https://github.com/kfisch2/dose#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "bootstrap": "^5.2.0",
     "connect-session-sequelize": "^7.1.4",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "handlebars": "^4.7.7",
+    "jest": "^28.1.3",
+    "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.21.3"
+    "node-cron": "^3.0.1",
+    "sequelize": "^6.21.3",
+    "sql": "^0.78.0",
+    "twilio": "^3.80.1"
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1"
   }
 }
