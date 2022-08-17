@@ -1,4 +1,4 @@
-<section>
+<section id="add-rx">
     <h2>Add Your Prescriptions Here</h2>
 
     <form class="new-rx">
@@ -35,10 +35,7 @@
             <input type="text" id="med-diag" class="form-control" name="med-diag" placeholder="Diagnosis">
         </div> --}}
         <div>
-            <button type="submit" id="add-rx" class="form-control">Add RX</button>
-            <div id="liveAlertPlaceholder" class="date-alert"></div>
-            <div id="liveAlertPlaceholder" class="empty-alert"></div>
-            
+            <button type="submit" id="add-rx-btn" class="form-control">Add RX</button>
         </div>
     </form>
 </section>
@@ -46,16 +43,16 @@
 {{#if prescriptions.length}}
 <section>
     <h3>Your Prescriptions</h3>
-    <ol>
+    <ol id="my-list">
         {{#each prescriptions as |prescription|}}
-        <li>
+        <li class="rx-list">
             
             {{> single-rx prescription}}
             <a href="/dashboard/edit/{{prescription.id}}" class="edit-rx">Edit Prescription</a>
         </li>
         {{/each}}
     </ol>
-    <button type="click" id="notify-all-btn">Click here to get a text reminder for all your prescriptions!</button>
+    <button type="click" id="notify-all-btn" class="p2">Click here to get a text reminder for all your prescriptions!</button>
 </section>
 {{/if}}
 
