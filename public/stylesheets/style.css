@@ -5,6 +5,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    height: 100%;
+}
+
 section {
     position: relative;
     width: 100%;
@@ -13,8 +17,8 @@ section {
     flex-direction: column;
     justify-content: flex-start;
     background: url('../assets/images/dose\ background.png');
-    background-repeat: no-repeat;
     background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 header {
@@ -96,116 +100,48 @@ header .navigation a:hover {
     border-left: solid 20px #226a80;
 }
 
-/* media queries */
-
-@media only screen and (max-width: 480px) {
-    section {
-        position: relative;
-        width: 100%;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-    }
-
-    header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #226a80;
-    }
-
-    header h2 {
-        justify-content: center;
-    }
-
-    header .logo {
-        position: relative;
-        color: #000;
-        font-size: 100px;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-weight: 800;
-        letter-spacing: 1px;
-        margin-left: -90px;
-    }
-
-    header .navigation a {
-        color: #000;
-        text-decoration: none;
-        font-weight: 500;
-        letter-spacing: 1px;
-        padding: 2px 15px;
-        border-radius: 5px;
-        transition: 0.3s;
-        margin-left: 30px;
-    }
-
-    header .navigation a:not(:last-child) {
-        margin-right: 30px;
-    }
-
-    header .navigation a:hover {
-        background: #fff;
-    }
-
-    .content {
-        max-width: 650px;
-        margin-top: 150px;
-    }
-
-    .content .info h2 {
-        color: #226a80;
-        font-size: 35px;
-        text-transform: uppercase;
-        font-weight: 800;
-        letter-spacing: 1px;
-        line-height: 40px;
-        padding-top: 110px;
-        margin-left: -90px;
-    }
-
-    .content .info h2 span {
-        color: #fff;
-        font-size: 35px;
-        font-weight: 600;
-    }
-
-    .content .info p {
-        font-size: 16px;
-        font-weight: 500;
-        margin-bottom: 120px;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-            'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        padding-top: 80px;
-        padding-right: 120px;
-        margin-left: -80px;
-    }
-
-    .boomers img {
-        display: none;
-    }
+#add-rx {
+    margin-bottom: -350px;
 }
 
-<<<<<<< HEAD
-=======
-    /* Tablet screen size */
+#notify-all-btn {
+    background: rgb(50,205,50,0.5)!important;
+    color: #000;
+}
+
+#notify-all-btn:hover {
+    background: rgb(50,205,50, 0.9)!important;
+    color: #000;
+}
+
+.log-reg {
+    width: 100%;
+    margin-left: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-form {
+    padding-bottom: 63%;
+}
+/* media queries */
 
     @media only screen and (max-width: 1024px) {
         section {
-            position: fixed;
+            position: relative;
             width: 100%;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         header {
-            position: fixed;
+            position: relative;
             top: 0;
             width: 100%;
             display: flex;
@@ -250,7 +186,7 @@ header .navigation a:hover {
         }
         .content {
             max-width: 650px;
-            margin-top: 150px;
+            margin-top: 30px;
             width: 100%;
         }
 
@@ -282,6 +218,190 @@ header .navigation a:hover {
         .boomers {
             display: none;
         }
+
+        .log-reg {
+            margin-top: 0%;
+            margin-left: 50px;
+        }
+
+        #add-rx {
+            margin-bottom: -300px;
+        }
+        
+        body {
+            height: 100%;
+        }
+
+        .rx-list {
+            padding: 20px;
+        }
+
+        #notify-all-btn {
+            margin-bottom: 40px;
+        }
+
+        #my-list {
+            margin-bottom: 0px;
+        }
+    }
+
+@media screen and (max-width: 780px) {
+    .log-reg {
+        margin-left: -25px;
+    }
+    
+    #add-rx {
+        margin-left: -40px;
+    }
+
+    .edit-rx-form {
+        margin-left: -40px;
+    }
+
+    .boomers {
+        display: contents;
+    }
+
+    .boomers img {
+        width: 70%;
+        margin-left: 85px;
+    }
+
+    .content {
+        margin-left: 70px;
+    }
+
+    #slogan {
+        margin-bottom: -50px;
+    }
+
+
+}
+    
+
+@media only screen and (max-width: 480px) {
+    section {
+        position: relative;
+        width: 100%;
+        /* min-height: 100vh; */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    header {
+        position: relative;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #226a80;
+    }
+
+    header h2 {
+        justify-content: center;
+    }
+
+    header .logo {
+        position: relative;
+        color: #000;
+        font-size: 100px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 1px;
+        margin-left: -90px;
+    }
+
+    header .navigation a {
+        color: #000;
+        text-decoration: none;
+        font-weight: 500;
+        letter-spacing: 1px;
+        padding: 2px 15px;
+        border-radius: 5px;
+        transition: 0.3s;
+        margin-left: 30px;
+    }
+
+    header .navigation a:not(:last-child) {
+        margin-right: 30px;
+    }
+
+    header .navigation a:hover {
+        background: #fff;
+    }
+
+    .content {
+        max-width: 650px;
+        margin: 0px;
+    }
+
+    #slogan h2 {
+        margin-left: 5px;
+    }
+
+    .content .info h2 {
+        color: #226a80;
+        font-size: 35px;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 1px;
+        line-height: 40px;
+        padding-top: 110px;
+        margin-left: 0px;
+    }
+
+    .content .info h2 span {
+        color: #fff;
+        font-size: 35px;
+        font-weight: 600;
+    }
+
+    .content .info p {
+        font-size: 16px;
+        font-weight: 500;
+        /* margin-bottom: 120px; */
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        /* padding-top: 80px;
+        padding-right: 120px;
+        margin-left: -80px; */
+        padding: 10px;
+    }
+
+    .boomers img {
+        display: none;
+    }
+
+    .log-reg {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        /* margin-left: -30%;
+        margin-top: 70%; */
+        margin: 0px;
+    }
+    
+    .register-form {
+        padding-top: 20px;
+        padding-bottom: 60px;
+    }
+
+    .login-form {
+        padding-bottom: 5px;
+    }
+    /* Tablet screen size */
+
+    #add-rx {
+        margin-bottom: -200px;
+        margin-left: 0px;
+    }
+
+    .rx-list {
+        padding: 15px;
     }
 }
->>>>>>> develop
