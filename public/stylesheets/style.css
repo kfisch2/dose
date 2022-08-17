@@ -23,12 +23,13 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #226A80;
 }
 
 header .logo {
     position: relative;
     color: #000;
-    font-size: 30px;
+    font-size: 40px;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 800;
@@ -44,6 +45,8 @@ header .navigation a{
     border-radius: 20px;
     transition: 0.3s;
     transition-property: background;
+    margin-left: 200px;
+    font-size: 25px;
 }
 
 header .navigation a:not(:last-child){
@@ -61,7 +64,7 @@ header .navigation a:hover {
 
 .content .info h2{
     color: #226A80;
-    font-size: 55px;
+    font-size: 35px;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 2px;
@@ -71,25 +74,24 @@ header .navigation a:hover {
 
 .content .info h2 span {
     color: #fff;
-    font-size: 50px;
+    font-size: 53px;
     font-weight: 600;
 }
 
 .content .info p{
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     margin-bottom: 40px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-/* .boomers {
+.boomers {
     display: flex;
     flex-direction: row;
-    margin-top: 0px;
-    float: right;
-    margin-left: 1000px;
-    margin-top: -480px;
-} */
+    margin-left: 900px;
+    margin-top: -320px;
+    border-left: solid 20px #226A80;
+}
 
 
 
