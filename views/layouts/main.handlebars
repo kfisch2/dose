@@ -5,14 +5,13 @@
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <title>Project Dose</title>
 
+        <link rel='stylesheet' href='/stylesheets/style.css' />
         <link
-            href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css'
             rel='stylesheet'
-            integrity='sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx'
+            href='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css'
+            integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
             crossorigin='anonymous'
         />
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
         <section>
@@ -20,9 +19,9 @@
                 <h2> <a href='#' class='logo'>Dose</a></h2>
                 <div class='navigation'>
                     <a href='/'>Home</a>
-                    {{!-- <a href='#'>Appointments</a> --}}
+                    {{! <a href='#'>Appointments</a> }}
                     <a href='/dashboard'>Prescriptions</a>
-                    {{!-- <a href='#'>Contact Us</a> --}}
+                    {{! <a href='#'>Contact Us</a> }}
                     {{#if loggedIn}}
                         <button id='logout' class='bg-danger'>Logout</button>
                     {{else}}
@@ -32,13 +31,9 @@
             </header>
             <div class='content'>
                 <div class='info'>
-                    {{! <h2>When You Feel Good<br>You Feel Good</h2>
-            <p>Our mission at Dose is to make sure that you are able to maintain peak health by keeping track 
-               of the most important things in your life, namely your prescriptions. We believe that when your 
-               body is feeling the best, your mind is free.
-            </p> }}
 
                     {{{body}}}
+                    
                 </div>
             </div>
             <div class='media-icons'>
@@ -49,9 +44,21 @@
         {{#if loggedIn}}
             <script src='/javascript/logout.js'></script>
         {{/if}}
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script
+            src='https://code.jquery.com/jquery-3.3.1.slim.min.js'
+            integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo'
+            crossorigin='anonymous'
+        ></script>
+        <script
+            src='https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js'
+            integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
+            crossorigin='anonymous'
+        ></script>
+        <script
+            src='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js'
+            integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
+            crossorigin='anonymous'
+        ></script>
     </body>
 
 </html>
