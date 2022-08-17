@@ -33,7 +33,7 @@ router.get('/', async (req, res, next) => {
     for (i = 0; i < results.length; i++) {
         // takes refill date and subtracts 3 days for reminder
         let reminderDate = new Date(results[i].refill_date);
-        console.log(reminderDate);
+        console.log(reminderDate,"here");
         reminderDate.setDate(reminderDate.getDate() - 2);
         const day = reminderDate.getDate();
         const month = reminderDate.getMonth() + 1;
