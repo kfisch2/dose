@@ -1,5 +1,34 @@
+// Trigger bootstrap alert function
+const missingFieldEditRX = (field) => {
+    const alertPlaceholder = document.querySelector('.emptyDate-alert');
+    const alert = (message, type) => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>',
+        ].join('');
+        alertPlaceholder.append(wrapper);
+    };
+    alert(`${field} required`, 'danger');
+};
+
+// incorrect date format
+const dateFormatAlert = () => {
+    const alertPlaceholder = document.querySelector('.date-alert');
+    const alert = (message, type) => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>',
+        ].join('');
+        alertPlaceholder.append(wrapper);
+    };
+    alert(`Please enter date as mm/dd/yyyy`, 'warning');
+};
+
 async function editPrescription(event) {
-    console.log('clicked');
     event.preventDefault();
 
     // const rx = document.querySelector('input[name="rx-name"]').value;
@@ -13,7 +42,9 @@ async function editPrescription(event) {
         window.location.toString().split('/').length - 1
     ];
 
-    console.log(cost, refill_date);
+    if (!refill_date) {
+        missingFieldEditRX('Refill Date');
+    }
 
     const response = await fetch(`/api/prescriptions/${id}`, {
         method: 'PUT',
@@ -31,8 +62,6 @@ async function editPrescription(event) {
 
     if (response.ok) {
         document.location.replace('/dashboard');
-    } else {
-        alert(response.statusText);
     }
 }
 
