@@ -13,6 +13,21 @@ const missingFieldEditRX = (field) => {
     alert(`${field} required`, 'danger');
 };
 
+// incorrect date format
+const dateFormatAlert = () => {
+    const alertPlaceholder = document.querySelector('.date-alert');
+    const alert = (message, type) => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>',
+        ].join('');
+        alertPlaceholder.append(wrapper);
+    };
+    alert(`Please enter date as mm/dd/yyyy`, 'warning');
+};
+
 async function editPrescription(event) {
     event.preventDefault();
 
