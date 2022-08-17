@@ -53,8 +53,8 @@ GitHub:
 Email: 
 - bin.ostrowski@gmail.com
 - 
-- 
-- 
+- brandon.geertsen@gmail.com
+- sean.maddox89@yahoo.com
 - 
 
 Please send any additional questions to any or all of the emails listed above.
