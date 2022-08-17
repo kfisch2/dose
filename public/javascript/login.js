@@ -1,4 +1,4 @@
-// Trigger alert functions
+// Trigger bootstrap alert functions
 
 // Pre-existing username/email/phone number
 const alreadyExists = (field) => {
@@ -12,7 +12,7 @@ const alreadyExists = (field) => {
         ].join('');
         alertPlaceholder.append(wrapper);
     };
-        alert(`username, email, or phone number already in use`, 'danger')
+    alert(`username, email, or phone number already in use`, 'danger');
 };
 
 // Incorrect username or password
@@ -27,9 +27,9 @@ const wrongUser_PW = () => {
         ].join('');
         alertPlaceholder.append(wrapper);
     };
-        alert(`Wrong username or password`, 'danger')
+    alert(`Wrong username or password`, 'danger');
 };
-  
+
 // Missing login field function
 const missingFieldLogin = (field) => {
     const alertPlaceholder = document.querySelector('.login-alert');
@@ -42,7 +42,7 @@ const missingFieldLogin = (field) => {
         ].join('');
         alertPlaceholder.append(wrapper);
     };
-        alert(`${field} required`, 'danger')
+    alert(`${field} required`, 'danger');
 };
 
 // Missing register field function
@@ -57,8 +57,8 @@ const missingFieldRegister = (field) => {
         ].join('');
         alertPlaceholder.append(wrapper);
     };
-        alert(`${field} required`, 'danger')
-}
+    alert(`${field} required`, 'danger');
+};
 
 // LOGIN FORM
 async function loginForm(event) {
@@ -69,11 +69,11 @@ async function loginForm(event) {
     const password = document.querySelector('#login-pw').value.trim();
 
     // Missing fields
-    if (!username || !password) {
+    if (!username) {
         missingFieldLogin('username');
-    };
-    if (!password){
-        missingFieldLogin('password')
+    }
+    if (!password) {
+        missingFieldLogin('password');
     }
 
     // Filled fields
@@ -96,27 +96,25 @@ async function loginForm(event) {
     }
 }
 
-
-// REGISTER FORM 
+// REGISTER FORM
 async function registerForm(event) {
     event.preventDefault();
-    console.log('clicked')
+    console.log('clicked');
     const username = document.querySelector('#register-username').value;
     const email = document.querySelector('#register-email').value;
     const phone_number = document.querySelector('#register-number').value;
     const password = document.querySelector('#register-pw').value;
 
-
     // Missing fields
     if (!username) {
         missingFieldRegister('username');
-    };
-    if (!password){
-        missingFieldRegister('password')
-    };
+    }
+    if (!password) {
+        missingFieldRegister('password');
+    }
     if (!email) {
-        missingFieldRegister('email')
-    };
+        missingFieldRegister('email');
+    }
 
     if (username && email && phone_number && password) {
         console.log(username, email, phone_number, password);
@@ -135,8 +133,8 @@ async function registerForm(event) {
             console.log('successful register');
         } else {
             alreadyExists();
-        }; 
-    }; 
+        }
+    }
 
     if (username && email && password) {
         const response = await fetch('/api/patients', {
@@ -153,9 +151,9 @@ async function registerForm(event) {
             console.log('successful register');
         } else {
             alreadyExists();
-        };
-    };
-};
+        }
+    }
+}
 
 document.querySelector('.login-form').addEventListener('submit', loginForm);
 document
