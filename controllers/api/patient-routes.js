@@ -68,6 +68,8 @@ router.post('/', (req, res) => {
             res.json(dbPatientData);
             console.log(dbPatientData);
         });
+    }).catch((err) => {
+        res.status(500).json(err);
     });
 });
 
@@ -110,6 +112,7 @@ router.post('/login', (req, res) => {
         },
     }).then((dbPatientData) => {
         if (!dbPatientData) {
+            // missing field function
             res.status(400).json({
                 message: 'No patient with that username!',
             });
@@ -119,6 +122,7 @@ router.post('/login', (req, res) => {
         const validPassword = dbPatientData.checkPassword(req.body.password);
 
         if (!validPassword) {
+            // missing field function
             res.status(400).json({ message: 'Incorrect password!' });
             return;
         }

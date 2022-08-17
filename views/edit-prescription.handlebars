@@ -1,0 +1,55 @@
+<section class="edit-rx-form">
+    <a href='/dashboard' class='href-styles all-buttons'> &larr; Back To Dashboard</a>
+    <h2>Edit Prescriptions {{prescription.rx}}</h2>
+
+    <form class='edit-prescription-form'>
+        {{!-- <div>
+            <label for="rx-name">Medication Name</label>
+            <input type="text" id="rx-name" class="form-control" name="rx-name" placeholder={{prescriptions.rx}} />
+        </div> --}}
+        <div>
+            <label for='rx-cost'>Medication Cost</label>
+            <input
+                type='text'
+                id='update-cost'
+                class='form-control'
+                name='update-cost'
+                placeholder={{prescription.cost}}
+            />
+        </div>
+        {{!-- <div>
+            <label for="fill-date">Medication Fill Date</label>
+            <input type="text" id="fill-date" class="form-control" name="fill-date" placeholder={{prescriptions.date_prescribed}} />
+        </div> --}}
+        <div>
+            <label for='refill-date'>Medication Refill Date</label>
+            <input
+                type='text'
+                id='update-refill-date'
+                class='form-control'
+                name='update-refill-date'
+                placeholder={{format_date prescription.refill_date}}
+            />
+        </div>
+        {{!-- <div>
+            <label for="med-diag">Diagnosis</label>
+            <input type="text" id="med-diag" class="form-control" name="med-diag" placeholder={{diagnosiss.id}}>
+        </div> --}}
+        <div>
+            <button type='submit' id='update-rx-btn' class='form-control all-buttons'>Update RX</button>
+            <button type='click' id='delete-rx-btn' class='form-control all-buttons'>Delete
+                RX</button>
+            <div id='liveAlertPlaceholder' class='emptyDate-alert'></div>
+            <div id="liveAlertPlaceholder" class="date-alert"></div>
+            <button
+                type='click'
+                id='notification-btn'
+                class='form-control all-buttons'
+            >Click here to get a refill notification!</button>
+        </div>
+    </form>
+</section>
+
+<script src='/javascript/edit-rx.js'></script>
+<script src='/javascript/delete-rx.js'></script>
+<script src='/javascript/notification.js'></script>
