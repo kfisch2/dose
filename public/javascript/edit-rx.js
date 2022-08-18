@@ -6,7 +6,7 @@ const missingFieldEditRX = (field) => {
         wrapper.innerHTML = [
             `<div class="alert alert-${type} alert-dismissible" role="alert">`,
             `   <div>${message}</div>`,
-            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>',
+            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">CLOSE</button>',
         ].join('');
         alertPlaceholder.append(wrapper);
     };
@@ -21,7 +21,7 @@ const dateFormatAlert = () => {
         wrapper.innerHTML = [
             `<div class="alert alert-${type} alert-dismissible" role="alert">`,
             `   <div>${message}</div>`,
-            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>',
+            '   <button type="button" class="btn-close alert-dismissable" data-dismiss="alert" aria-label="Close">CLOSE</button>',
         ].join('');
         alertPlaceholder.append(wrapper);
     };
