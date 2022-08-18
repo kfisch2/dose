@@ -148,7 +148,7 @@ li {
     font-size: 15px;
 }
 
-.all-buttons:hover {
+.rx-buttons:hover {
     background-color: rgba(69, 179, 69, 0.747);
     color: #000;
     text-decoration: none;
