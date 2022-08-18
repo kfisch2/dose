@@ -1,5 +1,5 @@
 <section class="edit-rx-form">
-    <a href='/dashboard'> &larr; Back to dashboard</a>
+    <a href='/dashboard' class='href-styles rx-buttons'> &larr; Back To Dashboard</a>
     <h2>Edit Prescriptions {{prescription.rx}}</h2>
 
     <form class='edit-prescription-form'>
@@ -36,16 +36,17 @@
             <input type="text" id="med-diag" class="form-control" name="med-diag" placeholder={{diagnosiss.id}}>
         </div> --}}
         <div>
-            <button type='submit' class='form-control'>Update RX</button>
-            <button type='click' id='delete-rx-btn' class='form-control'>Delete
+            <button type='submit' id='update-rx-btn' class='form-control rx-buttons'>Update RX</button>
+            <button type='click' id='delete-rx-btn' class='form-control rx-buttons'>Delete
                 RX</button>
             <div id='liveAlertPlaceholder' class='emptyDate-alert'></div>
             <div id="liveAlertPlaceholder" class="date-alert"></div>
             <button
                 type='click'
                 id='notification-btn'
-                class='form-control'
+                class='form-control rx-buttons'
             >Click here to get a refill notification!</button>
+            <div id="liveAlertPlaceholder" class="twilio-alert"></div>
         </div>
     </form>
 </section>

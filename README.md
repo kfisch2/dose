@@ -52,9 +52,8 @@ GitHub:
 
 Email: 
 - bin.ostrowski@gmail.com
-- 
-- 
-- 
-- 
+- kmlindsey24@gmail.com
+- sean.maddox89@yahoo.com
+- brandon.geertsen@gmail.com
 
 Please send any additional questions to any or all of the emails listed above.
