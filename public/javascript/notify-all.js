@@ -15,15 +15,15 @@ async function notifyAll(event) {
     }
 };
 
-
+//allert when user opts into twilio
 const twilioAlert = () => {
-    const alertPlaceholder = document.querySelector('#notify-all-btn');
+    const alertPlaceholder = document.querySelector('.twilio-alert');
     const alert = (message, type) => {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = [
             `<div class="alert alert-${type} alert-dismissible" role="alert">`,
             `   <div>${message}</div>`,
-            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>',
+            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">X</button>',
         ].join('');
         alertPlaceholder.append(wrapper);
     };
