@@ -1,70 +1,83 @@
-<section id="add-rx">
-    <h2>Add Your Prescriptions Here</h2>
+<div class="row top-section">
+    <div class="col content-background">
+        <h2>Receive reminders!</h2>
+        <h3>first</h3>
+            <div class="rx-font">Set up an account with Twilio by clicking the link below to receive text reminders.</div>
+        <a href="https://www.twilio.com/try-twilio" class="rx-buttons href-styles" target="_blank">twilio.com</a><br>
+        <h3>next</h3>
+        <button type="click" id="notify-all-btn" class="p2 rx-buttons">Click here to get a text reminder for all your prescriptions!</button>
+        <div id="liveAlertPlaceholder" class="twilio-alert"></div>
+    </div>
 
-    <form class="new-rx">
-        <div>
-            <label for="rx-name">Medication Name</label>
-            <input type="text" id="rx-name" class="form-control" name="rx-name" placeholder="Medication Name and Strength" />
-            
-        </div>
-        {{!-- <div>
-            <label for="rx-freq">Medication Instructions</label>
-            <input type="text" id="rx-freq" class="form-control" placeholder="Instructions" />
-        </div>
-        <div>
-            <label for="rx-qty">Medication Quantity</label>
-            <input type="text" id="rx-qty" class="form-control" placeholder="Quantity">
-        </div> --}}
-        <div>
-            <label for="rx-cost">Medication Cost</label>
-            <input type="text" id="rx-cost" class="form-control" name="rx-cost" placeholder="Cost" />
-            
-        </div>
-        <div>
-            <label for="fill-date">Medication Fill Date</label>
-            <input type="text" id="fill-date" class="form-control" name="fill-date" placeholder="Date you got your prescription" />
-            
-        </div>
-        <div>
-            <label for="refill-date">Medication Refill Date</label>
-            <input type="text" id="refill-date" class="form-control" name="refill-date" placeholder="Date to refill prescription">
-           
-        </div>
-        {{!-- <div>
-            <label for="med-diag">Diagnosis</label>
-            <input type="text" id="med-diag" class="form-control" name="med-diag" placeholder="Diagnosis">
-        </div> --}}
-        <div>
-            <button type="submit" id="add-rx-btn" class="form-control rx-buttons">Add RX</button>
-            <div id="liveAlertPlaceholder" class="date-alert"></div>
-            <div id="liveAlertPlaceholder" class="empty-alert"></div>
-        </div>
-    </form>
-</section>
+    <div class="col content-background">
+        {{#if prescriptions.length}}
+            <div class="prescriptions-list">
+                <h2 class="edit-rx-h2" >Your Prescriptions</h2>
+                <ol id="my-list">
+                    {{#each prescriptions as |prescription|}}
+                    <li class="rx-list">
+                        
+                        {{> single-rx prescription}}
+                        <a href="/dashboard/edit/{{prescription.id}}" class="edit-rx rx-buttons href-styles">Edit Prescription</a>
+                    </li>
+                    {{/each}}
+                </ol>
+            </div>
+        {{/if}}
+    </div>
+</div>
 
-{{#if prescriptions.length}}
-<section>
-    <h2>Your Prescriptions</h2>
-    <ol id="my-list">
-        {{#each prescriptions as |prescription|}}
-        <li class="rx-list">
-            
-            {{> single-rx prescription}}
-            <a href="/dashboard/edit/{{prescription.id}}" class="edit-rx rx-buttons href-styles">Edit Prescription</a>
-        </li>
-        {{/each}}
-    </ol>
-</section>
-<section>
-    <h2>Receive reminders!</h2>
-    <h3>first</h3>
-        <div class="rx-font">Set up an account with Twilio by clicking the link below to receive text reminders.</div>
-    <a href="https://www.twilio.com/try-twilio" class="rx-buttons href-styles">twilio.com</a><br>
-    <h3>next</h3>
-    <button type="click" id="notify-all-btn" class="p2 rx-buttons">Click here to get a text reminder for all your prescriptions!</button>
-    <div id="liveAlertPlaceholder" class="twilio-alert"></div>
-</section>
-{{/if}}
+
+<div class="row">
+    <div class="col content-background">
+        <div id="add-rx">
+            <h2>Add Your Prescriptions Here</h2>
+            <form class="new-rx">
+                <div>
+                    <label for="rx-name" class="text-light">Medication Name</label>
+                    <input type="text" id="rx-name" class="form-control" name="rx-name" placeholder="Medication Name and Strength" />
+                    
+                </div>
+                {{!-- <div>
+                    <label for="rx-freq">Medication Instructions</label>
+                    <input type="text" id="rx-freq" class="form-control" placeholder="Instructions" />
+                </div>
+                <div>
+                    <label for="rx-qty">Medication Quantity</label>
+                    <input type="text" id="rx-qty" class="form-control" placeholder="Quantity">
+                </div> --}}
+                <div>
+                    <label for="rx-cost" class="text-light">Medication Cost</label>
+                    <input type="text" id="rx-cost" class="form-control" name="rx-cost" placeholder="Cost" />
+                    
+                </div>
+                <div>
+                    <label for="fill-date" class="text-light">Medication Fill Date</label>
+                    <input type="text" id="fill-date" class="form-control" name="fill-date" placeholder="Date you got your prescription" />
+                    
+                </div>
+                <div>
+                    <label for="refill-date" class="text-light">Medication Refill Date</label>
+                    <input type="text" id="refill-date" class="form-control" name="refill-date" placeholder="Date to refill prescription">
+                
+                </div>
+                {{!-- <div>
+                    <label for="med-diag">Diagnosis</label>
+                    <input type="text" id="med-diag" class="form-control" name="med-diag" placeholder="Diagnosis">
+                </div> --}}
+                <div>
+                    <button type="submit" id="add-rx-btn" class="form-control rx-buttons">Add RX</button>
+                    <div id="liveAlertPlaceholder" class="date-alert"></div>
+                    <div id="liveAlertPlaceholder" class="empty-alert"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+
 
 <script src="/javascript/add-rx.js"></script>
 <script src="/javascript/notify-all.js"></script>
