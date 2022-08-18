@@ -119,7 +119,7 @@ header .navigation a:hover {
     margin-bottom: 30px;
 }
 
-.all-buttons {
+.rx-buttons {
     color: #000;
     text-decoration: none;
     background: none;
@@ -135,10 +135,17 @@ header .navigation a:hover {
     font-size: 15px;
 }
 
-.all-buttons:hover {
+.rx-buttons:hover {
     background-color: rgb(50,205,50, 0.9);
     color: #000;
     text-decoration: none;
+}
+
+.btn-close {
+    color: #000;
+    font-size: 10px;
+    line-height: 1em;
+    padding: 5px
 }
 
 h3 {
