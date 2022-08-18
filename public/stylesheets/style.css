@@ -92,14 +92,6 @@ header .navigation a:hover {
         'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.boomers {
-    display: flex;
-    flex-direction: row;
-    margin-left: 900px;
-    margin-top: -320px;
-    border-left: solid 20px #226a80;
-}
-
 #add-rx {
     margin-bottom: -350px;
 }
@@ -304,7 +296,7 @@ h3 {
     }
 
     .boomers img {
-        width: 70%;
+        width: fit-content;
         margin-left: 85px;
     }
 
