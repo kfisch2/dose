@@ -2,7 +2,7 @@
 
 ## Description
 
-Dose is a full-stack application where a user can keep track of all their perscriptions in one place.
+Dose is a full-stack application where a user can keep track of all their perscriptions and receive text reminders when a perscription needs a refill.
 
 ## Table of Content
 
@@ -55,5 +55,6 @@ Email:
 - kmlindsey24@gmail.com
 - sean.maddox89@yahoo.com
 - brandon.geertsen@gmail.com
+- kaedenthewodke@gmail.com
 
 Please send any additional questions to any or all of the emails listed above.

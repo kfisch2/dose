@@ -32,7 +32,7 @@ router.get('/', withAuth, (req, res) => {
 //get edit prescription
 router.get('/edit/:id', withAuth, (req, res) => {
     Prescription.findByPk(req.params.id, {
-        attributes: ['cost', 'refill_date'],
+        attributes: ['rx', 'cost', 'refill_date'],
         include: [
             // { model: Diagnosis, attributes: ['id', 'diagnosis_name'] },
             { model: Patient, attributes: ['username'] },

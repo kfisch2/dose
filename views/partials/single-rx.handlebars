@@ -1,12 +1,13 @@
-<div class='single-rx'>
+<div class='single-rx col'>
     <h3>{{rx}}</h3>
 
-    <div class='secondary-info'>
-        <div class='rx-font'>Refill by: {{format_date refill_date}}<div>
-        <div class='rx-font'>Cost: ${{cost}}</div>
-        <div class='rx-font'>
-            Prescribed on:
-            {{format_date date_prescribed}}</div>
+    <div class='secondary-info rx-font'>
+        Refill by: {{format_date refill_date}} <br>
+        Cost: ${{cost}} <br>
+        Prescribed on: {{format_date date_prescribed}} <br>
     </div>
-
 </div>
+<a href="/dashboard/edit/{{id}}" class="col edit-rx-btn rx-buttons href-styles">
+    Edit {{rx}}<br>
+    Prescription
+</a>

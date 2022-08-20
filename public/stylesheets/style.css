@@ -93,14 +93,12 @@ header .navigation a:hover {
 }
 
 .content-background {
-    background-color: #3c89a1e7;
+    background-color: rgb(34, 106, 128, 0.7);
+    padding: 20px;
 }
 
-.top-section {
-    margin-bottom: 10px;
-}
 .content .info h2 {
-    color: rgb(239, 240, 245);
+    color:  #226a80;
     font-size: 35px;
     text-transform: uppercase;
     font-weight: 800;
@@ -122,9 +120,6 @@ header .navigation a:hover {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
         'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.prescriptions-list {
-    padding-left: 28px;
-}
 
 #add-rx {
     display: inline;
@@ -135,6 +130,11 @@ ol {
 }
 li {
     margin-bottom: 15px;
+}
+
+.form-text{
+    margin-top: 15px;
+    color:#000;
 }
 
 .add-rx {
@@ -172,7 +172,7 @@ li {
 }
 
 .rx-buttons:hover {
-    background-color: rgba(69, 179, 69, 0.747);
+    background-color: rgba(69, 179, 69);
     color: #000;
     text-decoration: none;
 }
@@ -185,7 +185,7 @@ li {
 }
 
 h3 {
-    color: rgb(229, 231, 241);
+    color: #000;
     font-size: 35px;
     text-transform: uppercase;
     font-weight: 800;
@@ -198,6 +198,22 @@ h3 {
     color: #000;
     font-weight: 500;
     letter-spacing: 1px;
+}
+
+.single-rx {
+    background-color: rgb(255, 255, 255, 0.9);
+    margin-bottom:3px;
+    padding-left: 2px;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.edit-rx-btn {
+    margin-top: 2px;
+    background-color: rgb(161, 205, 144);
+    border-radius: 0px 10px 10px 0px;
+    text-align: center;  
+    font-size: 20px;
+    text-transform: uppercase;
 }
 
 .log-reg {
@@ -361,10 +377,6 @@ h3 {
     }
 
     #add-rx {
-        margin-left: -40px;
-    }
-
-    .edit-rx-form {
         margin-left: -40px;
     }
 

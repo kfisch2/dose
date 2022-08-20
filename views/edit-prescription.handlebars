@@ -1,14 +1,14 @@
 <section class="edit-rx-form">
     <a href='/dashboard' class='href-styles rx-buttons'> &larr; Back To Dashboard</a>
-    <h2>Edit Prescriptions {{prescription.rx}}</h2>
+    <h2>Edit {{prescription.rx}} Prescription</h2>
 
-    <form class='edit-prescription-form'>
+    <form class='edit-prescription-form content-background'>
         {{!-- <div>
             <label for="rx-name">Medication Name</label>
             <input type="text" id="rx-name" class="form-control" name="rx-name" placeholder={{prescriptions.rx}} />
         </div> --}}
         <div>
-            <label for='rx-cost'>Medication Cost</label>
+            <label for='rx-cost' class="form-text">Medication Cost</label>
             <input
                 type='text'
                 id='update-cost'
@@ -22,7 +22,7 @@
             <input type="text" id="fill-date" class="form-control" name="fill-date" placeholder={{prescriptions.date_prescribed}} />
         </div> --}}
         <div>
-            <label for='refill-date'>Medication Refill Date</label>
+            <label for='refill-date' class="form-text">Medication Refill Date</label>
             <input
                 type='text'
                 id='update-refill-date'
