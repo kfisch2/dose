@@ -5,7 +5,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <title>Project Dose</title>
 
-        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel='stylesheet' href='/stylesheets/style.css'/>
         <link
             rel='stylesheet'
             href='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css'
@@ -23,7 +23,7 @@
                     <a href='/dashboard'>Prescriptions</a>
                     {{! <a href='#'>Contact Us</a> }}
                     {{#if loggedIn}}
-                        <button id='logout' class='logoutBtn'>Logout</button>
+                        <a id='logout'>Logout</button>
                     {{else}}
                         <a href='/login' class='loginBtn'>Log In</a>
                     {{/if}}
