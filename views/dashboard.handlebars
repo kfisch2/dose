@@ -1,14 +1,4 @@
-<div class="row top-section">
-    <div class="col content-background">
-        <h2>Receive reminders!</h2>
-        <h3>first</h3>
-            <div class="rx-font">Set up an account with Twilio by clicking the link below to receive text reminders.</div>
-        <a href="https://www.twilio.com/try-twilio" class="rx-buttons href-styles" target="_blank">twilio.com</a><br>
-        <h3>next</h3>
-        <button type="click" id="notify-all-btn" class="p2 rx-buttons">Click here to get a text reminder for all your prescriptions!</button>
-        <div id="liveAlertPlaceholder" class="twilio-alert"></div>
-    </div>
-
+<div class="row">
     <div class="col content-background">
         {{#if prescriptions.length}}
             <div class="prescriptions-list">
@@ -23,12 +13,13 @@
                     {{/each}}
                 </ol>
             </div>
+            <div class="col">
+                <button type="click" id="notify-all-btn" class="p2 rx-buttons">Click here to get a text reminder for all your prescriptions!</button>
+                <div id="liveAlertPlaceholder" class="twilio-alert"></div>
+            </div>
         {{/if}}
     </div>
-</div>
 
-
-<div class="row">
     <div class="col content-background">
         <div id="add-rx">
             <h2>Add Your Prescriptions Here</h2>
