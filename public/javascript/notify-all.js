@@ -9,12 +9,25 @@ async function notifyAll(event) {
     });
 
     if (response.ok) {
-        window.alert(
-            'You will receive a text reminder for all your prescriptions 3 days before the refill date'
-        );
+        twilioAlert();
     } else {
         alert(response.statusText);
     }
-}
+};
+
+//allert when user opts into twilio
+const twilioAlert = () => {
+    const alertPlaceholder = document.querySelector('.twilio-alert');
+    const alert = (message, type) => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">X</button>',
+        ].join('');
+        alertPlaceholder.append(wrapper);
+    };
+    alert(`You will receive a text reminder for all your prescriptions 3 days before the refill date`, 'warning');
+};
 
 document.querySelector('#notify-all-btn').addEventListener('click', notifyAll);
